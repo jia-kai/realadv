@@ -1,0 +1,733 @@
+diff --git a/config.json b/config.json
+index ef7522e..704122a 100644
+--- a/config.json
++++ b/config.json
+@@ -1,8 +1,8 @@
+ {
+   "_comment": "===== RS LOSS CONFIGURATION =====",
+-  "w_l1": 2e-5,
+-  "w_rsloss": 1e-4,
+-  
++  "w_l1": 1e-5,
++  "w_rsloss": 1e-3,
++
+   "_comment": "===== MODEL CONFIGURATION =====",
+   "model_dir": "trained_models/relu_stable",
+   "estimation_method": "naive_ia",
+@@ -12,13 +12,12 @@
+ 
+   "_comment": "===== TRAINING CONFIGURATION =====",
+   "random_seed": 845234,
+-  "max_num_training_steps": 10000,
++  "max_num_training_steps": 97656,
+   "num_output_steps": 100,
+   "num_summary_steps": 100,
+   "num_checkpoint_steps": 500,
+   "num_eval_steps": 2000,
+-  "num_training_examples": 55000,
+-  "training_batch_size": 64,
++  "training_batch_size": 128,
+   "eval_during_training": true,
+   "adversarial_training": true,
+ 
+@@ -28,11 +27,11 @@
+   "eval_on_cpu": true,
+ 
+   "_comment": "=====ADVERSARIAL EXAMPLES CONFIGURATION=====",
+-  "epsilon": 0.1,
++  "epsilon": 2,
+   "k": 8,
+-  "a": 0.03,
++  "a": 0.6,
+   "random_start": true,
+   "loss_func": "xent",
+   "incremental": true,
+-  "eval_epsilon": 0.1
++  "eval_epsilon": 2
+ }
+diff --git a/datasubset.py b/datasubset.py
+index 3d9ee75..7f055b9 100644
+--- a/datasubset.py
++++ b/datasubset.py
+@@ -17,9 +17,16 @@ version = sys.version_info
+ import numpy as np
+ 
+ class DataSubset(object):
+-    def __init__(self, xs, ys, size):
+-        if size < 55000:
+-            xs, ys = self._per_class_subsample(xs, ys, size)
++    def __init__(self, xs, ys, size=None, one_hot_expand=None):
++        if size is None:
++            size = xs.shape[0]
++        ys = ys.flatten()
++        assert ys.size == xs.shape[0]
++        if one_hot_expand:
++            new_ys = np.zeros((xs.shape[0], one_hot_expand), dtype=np.float32)
++            new_ys[np.arange(ys.size), ys.flatten().astype(np.int32)] = 1
++            ys = new_ys
++
+         self.xs = xs
+         self.n = xs.shape[0]
+         self.ys = ys
+diff --git a/model_naive_cifar_ia.py b/model_naive_cifar_ia.py
+new file mode 100644
+index 0000000..db27ad1
+--- /dev/null
++++ b/model_naive_cifar_ia.py
+@@ -0,0 +1,138 @@
++"""
++The model is adapted from the tensorflow tutorial:
++https://www.tensorflow.org/get_started/mnist/pros
++"""
++from __future__ import absolute_import
++from __future__ import division
++from __future__ import print_function
++
++import tensorflow as tf
++import numpy as np
++
++class Model(object):
++  def __init__(self, config):
++    filters = [16, 32, 100]
++    filter_size = config["filter_size"]
++
++    self.x_input = tf.placeholder(tf.float32, shape = [None, 32, 32, 3])
++    self.y_input = tf.placeholder(tf.int64, shape = [None])
++    self.x_input_natural = tf.placeholder(tf.float32, shape = [None, 32, 32, 3])
++
++    # first convolutional layer
++    self.W_conv1 = self._weight_variable([filter_size, filter_size, 3, filters[0]],
++                      sparsity = config["sparse_init"])
++    b_conv1 = self._bias_variable([filters[0]])
++    self.h_1 = self._conv2d_2x2_strided(self.x_input, self.W_conv1) + b_conv1
++    self.h_conv1 = tf.nn.relu(self.h_1)
++
++    # second convolutional layer
++    self.W_conv2 = self._weight_variable([filter_size, filter_size, filters[0], filters[1]],
++                      sparsity = config["sparse_init"])
++    b_conv2 = self._bias_variable([filters[1]])
++    self.h_2 = self._conv2d_2x2_strided(self.h_conv1, self.W_conv2) + b_conv2
++    self.h_conv2 = tf.nn.relu(self.h_2)
++
++    # first fc layer
++    self.W_fc1 = self._weight_variable([8 * 8 * filters[1], filters[2]])
++    b_fc1 = self._bias_variable([filters[2]])
++    h_conv2_flat = tf.reshape(self.h_conv2, [-1, 8 * 8 * filters[1]])
++    self.h_f1 = tf.matmul(h_conv2_flat, self.W_fc1) + b_fc1
++    self.h_fc1 = tf.nn.relu(self.h_f1)
++
++
++    # l1 loss
++    self.l1_loss = 16 * 16 * self._l1(self.W_conv1) + \
++          8 * 8 * self._l1(self.W_conv2) + self._l1(self.W_fc1)
++
++    # output layer
++    self.W_fc_out = self._weight_variable([filters[2],10])
++    b_fc_out = self._bias_variable([10])
++    self.pre_softmax = tf.matmul(self.h_fc1, self.W_fc_out) + b_fc_out
++
++
++    # relu lb/ub estimation for layer 0
++    self.lb_0 = tf.maximum(self.x_input_natural - config["eval_epsilon"]/255., 0)
++    self.ub_0 = tf.minimum(self.x_input_natural + config["eval_epsilon"]/255., 1)
++
++    # relu lb/ub estimation for layer 1
++    self.lb_1, self.ub_1 = self._interval_arithmetic_conv_2x2_strided(self.lb_0, self.ub_0, self.W_conv1, b_conv1)
++    self.lbh_1, self.ubh_1 = tf.nn.relu(self.lb_1), tf.nn.relu(self.ub_1)
++
++    # relu lb/ub estimation for layer 2
++    self.lb_2, self.ub_2 = self._interval_arithmetic_conv_2x2_strided(self.lbh_1, self.ubh_1, self.W_conv2, b_conv2)
++    self.lbh_2, self.ubh_2 = tf.nn.relu(self.lb_2), tf.nn.relu(self.ub_2)
++
++    self.lbh_2_flat = tf.reshape(self.lbh_2, [-1, 8 * 8 * filters[1]])
++    self.ubh_2_flat = tf.reshape(self.ubh_2, [-1, 8 * 8 * filters[1]])
++
++    # relu lb/ub estimation for layer 3
++    self.lb_3, self.ub_3 = self._interval_arithmetic(self.lbh_2_flat, self.ubh_2_flat, self.W_fc1, b_fc1)
++
++    # unstable relus estimation
++    self.unstable1 = self._num_unstable(self.lb_1, self.ub_1)
++    self.unstable2 = self._num_unstable(self.lb_2, self.ub_2)
++    self.unstable3 = self._num_unstable(self.lb_3, self.ub_3)
++    
++    # unstable relus loss
++    self.un1loss = self._l_relu_stable(self.lb_1, self.ub_1)
++    self.un2loss = self._l_relu_stable(self.lb_2, self.ub_2)
++    self.un3loss = self._l_relu_stable(self.lb_3, self.ub_3)
++    self.rsloss = self.un1loss + self.un2loss + self.un3loss
++
++    y_xent = tf.nn.sparse_softmax_cross_entropy_with_logits(
++        labels=self.y_input, logits=self.pre_softmax)
++    self.xent = tf.reduce_mean(y_xent)
++
++    self.y_pred = tf.argmax(self.pre_softmax, 1)
++    correct_prediction = tf.equal(self.y_pred, self.y_input)
++    self.num_correct = tf.reduce_sum(tf.cast(correct_prediction, tf.int64))
++    self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
++
++  @staticmethod
++  def _interval_arithmetic(lb, ub, W, b):
++      W_max = tf.maximum(W, 0.0)
++      W_min = tf.minimum(W, 0.0)
++      new_lb = tf.matmul(lb, W_max) + tf.matmul(ub, W_min) + b
++      new_ub = tf.matmul(ub, W_max) + tf.matmul(lb, W_min) + b
++      return new_lb, new_ub
++
++  @staticmethod
++  def _weight_variable(shape, sparsity=-1.0):
++      initial = tf.truncated_normal(shape, stddev=0.1)
++      if sparsity > 0:
++          mask = tf.cast(tf.random_uniform(shape) < sparsity, tf.float32)
++          initial *= mask
++      return tf.Variable(initial)
++
++  @staticmethod
++  def _bias_variable(shape):
++      initial = tf.constant(0.1, shape = shape)
++      return tf.Variable(initial)
++
++  @staticmethod 
++  def _l1(var):
++    """L1 weight decay loss."""
++    return  tf.reduce_sum(tf.abs(var))
++
++  @staticmethod
++  def _num_unstable(lb, ub):
++    is_unstable = tf.cast(lb * ub < 0.0, tf.int32)
++    all_but_first_dim = np.arange(len(is_unstable.shape))[1:]
++    result = tf.reduce_sum(is_unstable, all_but_first_dim)
++    return result
++
++  @staticmethod
++  def _l_relu_stable(lb, ub, norm_constant=1.0):
++    loss = -tf.reduce_mean(tf.reduce_sum(tf.tanh(1.0+ norm_constant * lb * ub), axis=-1))
++    return loss
++
++  @staticmethod
++  def _conv2d_2x2_strided(x, W):
++      return tf.nn.conv2d(x, W, strides=[1,2,2,1], padding='SAME')
++
++  def _interval_arithmetic_conv_2x2_strided(self, lb, ub, W, b):
++      W_max = tf.maximum(W, 0.0)
++      W_min = tf.minimum(W, 0.0)
++      new_lb = self._conv2d_2x2_strided(lb, W_max) + self._conv2d_2x2_strided(ub, W_min) + b
++      new_ub = self._conv2d_2x2_strided(ub, W_max) + self._conv2d_2x2_strided(lb, W_min) + b
++      return new_lb, new_ub
+diff --git a/post_process_model.py b/post_process_model.py
+index 4cbd53c..8516cff 100644
+--- a/post_process_model.py
++++ b/post_process_model.py
+@@ -14,12 +14,12 @@ from tensorflow.python import pywrap_tensorflow
+ 
+ import numpy as np
+ import tensorflow as tf
+-from tensorflow.examples.tutorials.mnist import input_data
++from tensorflow.keras import datasets as tf_datasets
+ import scipy.io as sio
+ 
++from datasubset import DataSubset
+ from pgd_attack import LinfPGDAttack
+-import models.MNIST_naive_ia
+-import models.MNIST_naive_ia_masked
++from model_naive_cifar_ia import Model
+ 
+ '''
+ NOTE: This file assumes an architecture involving a 3 layer DNN with
+@@ -40,7 +40,7 @@ parser.add_argument('--relu_prune_frac', dest='relu_prune_frac', default=0.1, he
+ parser.add_argument('--do_eval', dest='do_eval', action='store_true', help='use this flag to evaluate test accuracy, PGD adversarial accuracy, and ReLU stability after each post-processing step')
+ parser.set_defaults(do_eval=False)
+ parser.add_argument('--output', dest='output', help='set the name of the output .mat file')
+-  
++
+ args = parser.parse_args()
+ if args.output is None:
+   raise ValueError('Need to specify output .mat filename')
+@@ -56,20 +56,31 @@ if not os.path.isdir(model_dir):
+   raise ValueError('The model directory was not found')
+ 
+ # Set up the data, hyperparameters, and the model
+-mnist = input_data.read_data_sets('MNIST_data', one_hot=False)
++class raw_dataset(object):
++    original = tf_datasets.cifar10.load_data()
++    train_data = DataSubset(original[0][0], original[0][1])
++    eval_data = DataSubset(original[1][0], original[1][1])
++
++class mnist:
++    class train:
++        images = raw_dataset.train_data.xs / 255
++        labels = raw_dataset.train_data.ys
++    class test:
++        images = raw_dataset.eval_data.xs / 255
++        labels = raw_dataset.eval_data.ys
+ 
+ with open('config.json') as config_file:
+     config = json.load(config_file)
+ 
+-num_training_examples = config['num_training_examples']
++num_training_examples = raw_dataset.train_data.xs.shape[0]
+ num_eval_examples = config['num_eval_examples']
+ eval_batch_size = config['eval_batch_size']
+ 
+-model = models.MNIST_naive_ia.Model(config)
+-attack = LinfPGDAttack(model, 
+-                       config['epsilon'],
++model = Model(config)
++attack = LinfPGDAttack(model,
++                       config['epsilon'] / 255,
+                        config['k'],
+-                       config['a'],
++                       config['a'] / 255,
+                        config['random_start'],
+                        config['loss_func'])
+ 
+@@ -196,8 +207,8 @@ def evaluate_checkpoint(filename, weight_prune, tolerance, relu_prune, relu_prun
+                     model.y_input: y_batch}
+ 
+         cur_corr_nat = sess.run(model.num_correct, feed_dict = dict_nat)
+-        cur_corr_adv = sess.run(model.num_correct, feed_dict = dict_adv)      
+-        
++        cur_corr_adv = sess.run(model.num_correct, feed_dict = dict_adv)
++
+         total_corr_nat += cur_corr_nat
+         total_corr_adv += cur_corr_adv
+ 
+@@ -223,14 +234,14 @@ def evaluate_checkpoint(filename, weight_prune, tolerance, relu_prune, relu_prun
+ 
+     if weight_prune:
+       print('Second eval - prune small weights')
+-      
++
+       # Hardcoded variables
+       prune_small_weights([c1_v, c2_v, fc_v], sess, tolerance)
+ 
+       # These are the correct values (no need to refix-nonzeros) for the masked models
+       c1, c1b, c2, c2b, fc, fcb, sm, smb = sess.run([c1_v, c1_b,
+         c2_v, c2_b, fc_v, fc_b, sm_v, sm_b], feed_dict = dict_nat_single)
+-      
++
+       if do_eval:
+         # Iterate over the eval samples batch-by-batch
+         num_batches = int(math.ceil(num_eval_examples / eval_batch_size))
+@@ -258,8 +269,8 @@ def evaluate_checkpoint(filename, weight_prune, tolerance, relu_prune, relu_prun
+                       model.y_input: y_batch}
+ 
+           cur_corr_nat = sess.run(model.num_correct, feed_dict = dict_nat)
+-          cur_corr_adv = sess.run(model.num_correct, feed_dict = dict_adv)      
+-          
++          cur_corr_adv = sess.run(model.num_correct, feed_dict = dict_adv)
++
+           total_corr_nat += cur_corr_nat
+           total_corr_adv += cur_corr_adv
+ 
+@@ -317,7 +328,7 @@ def evaluate_checkpoint(filename, weight_prune, tolerance, relu_prune, relu_prun
+         tot_rc1 += rc1_adv
+         tot_rc2 += rc2_adv
+         tot_rfc += rfc_adv
+-      
++
+       def get_ops(adv, relu_prune_frac):
+           num_to_remove = int(num_training_examples * relu_prune_frac)
+           assert(num_to_remove <= num_training_examples/2 + 1)
+@@ -335,7 +346,7 @@ def evaluate_checkpoint(filename, weight_prune, tolerance, relu_prune, relu_prun
+ 
+       if do_eval:
+         mask_model = models.MNIST_naive_ia_masked.Model(config, c1_ops, c2_ops, fc_ops)
+-        mask_model_attack = LinfPGDAttack(mask_model, 
++        mask_model_attack = LinfPGDAttack(mask_model,
+                                config['epsilon'],
+                                config['k'],
+                                config['a'],
+@@ -389,8 +400,8 @@ def evaluate_checkpoint(filename, weight_prune, tolerance, relu_prune, relu_prun
+                       mask_model.y_input: y_batch}
+ 
+           cur_corr_nat = sess.run(mask_model.num_correct, feed_dict = dict_nat)
+-          cur_corr_adv = sess.run(mask_model.num_correct, feed_dict = dict_adv)      
+-          
++          cur_corr_adv = sess.run(mask_model.num_correct, feed_dict = dict_adv)
++
+           total_corr_nat += cur_corr_nat
+           total_corr_adv += cur_corr_adv
+ 
+@@ -436,14 +447,14 @@ new_model = evaluate_checkpoint(cur_checkpoint, weight_prune, weight_thresh,
+                                                 relu_prune, relu_prune_frac)
+ 
+ if relu_prune:
+-  fc1_weight, fc1_bias, fc1_mask = convert_conv_2x2_to_fc([28, 28], 
++  fc1_weight, fc1_bias, fc1_mask = convert_conv_2x2_to_fc([32, 32],
+             new_model['c1_w'], new_model['c1_b'], new_model['c1_m'])
+-  fc2_weight, fc2_bias, fc2_mask = convert_conv_2x2_to_fc([14, 14], 
++  fc2_weight, fc2_bias, fc2_mask = convert_conv_2x2_to_fc([16, 16],
+             new_model['c2_w'], new_model['c2_b'], new_model['c2_m'])
+ else:
+-  fc1_weight, fc1_bias, fc1_mask = convert_conv_2x2_to_fc([28, 28], 
++  fc1_weight, fc1_bias, fc1_mask = convert_conv_2x2_to_fc([32, 32],
+             new_model['c1_w'], new_model['c1_b'])
+-  fc2_weight, fc2_bias, fc2_mask = convert_conv_2x2_to_fc([14, 14], 
++  fc2_weight, fc2_bias, fc2_mask = convert_conv_2x2_to_fc([16, 16],
+             new_model['c2_w'], new_model['c2_b'])
+ 
+ print("Saving model now")
+diff --git a/train_naive_cifar_ia.py b/train_naive_cifar_ia.py
+new file mode 100644
+index 0000000..1a7798d
+--- /dev/null
++++ b/train_naive_cifar_ia.py
+@@ -0,0 +1,302 @@
++"""Trains a model, saving checkpoints and tensorboard summaries along
++   the way."""
++from __future__ import absolute_import
++from __future__ import division
++from __future__ import print_function
++
++from datetime import datetime
++import json
++import math
++import os
++import shutil
++import sys
++from timeit import default_timer as timer
++
++import numpy as np
++import tensorflow as tf
++
++
++from tqdm import trange
++
++from datasubset import DataSubset
++from tensorflow.keras import datasets as tf_datasets
++
++from model_naive_cifar_ia import Model
++from pgd_attack import LinfPGDAttack
++
++with open('config.json') as config_file:
++    config = json.load(config_file)
++if os.path.exists('job_parameters.json'):
++    with open('job_parameters.json') as config_file:
++        param_config = json.load(config_file)
++    for k in param_config.keys():
++                assert k in config.keys()
++    config.update(param_config)
++
++# Setting up training parameters
++tf.set_random_seed(config['random_seed'])
++
++max_num_training_steps = config['max_num_training_steps']
++num_output_steps = config['num_output_steps']
++num_summary_steps = config['num_summary_steps']
++num_eval_steps = config['num_eval_steps']
++num_checkpoint_steps = config['num_checkpoint_steps']
++num_eval_examples = config['num_eval_examples']
++eval_batch_size = config['eval_batch_size']
++eval_during_training = config['eval_during_training']
++
++model_dir = config['model_dir']
++
++batch_size = config['training_batch_size']
++filters = config['filters']
++
++adv_training = config['adversarial_training']
++
++# Setting up the data and the model
++data_dict = {'seed': 69169,
++             'image_noise': 0.0,
++             'label_noise': 0.0}
++
++# Setting up the data and the model
++class raw_dataset(object):
++    original = tf_datasets.cifar10.load_data()
++    train_data = DataSubset(original[0][0], original[0][1])
++    eval_data = DataSubset(original[1][0], original[1][1])
++
++global_step = tf.contrib.framework.get_or_create_global_step()
++
++model = Model(config)
++
++# Setting up the optimizer
++w_rsloss = config["w_rsloss"]
++w_l1 = config["w_l1"]
++
++train_step = tf.train.AdamOptimizer(1e-4).minimize(model.xent + \
++                                                    w_rsloss * model.rsloss + \
++                                                    w_l1 * model.l1_loss,
++                                                    global_step=global_step)
++
++# Set up adversary
++attack = LinfPGDAttack(model,
++                       config['epsilon']/255.,
++                       config['k'],
++                       config['a']/255.,
++                       config['random_start'],
++                       config['loss_func'],
++                       config['incremental'])
++
++eval_attack = LinfPGDAttack(model,
++                            config['eval_epsilon']/255.,
++                            40,
++                            config['eval_epsilon']/255.,
++                            config['random_start'],
++                            config['loss_func'])
++
++
++# Setting up the Tensorboard and checkpoint outputs
++if not os.path.exists(model_dir):
++  os.makedirs(model_dir)
++eval_dir = os.path.join(model_dir, 'eval')
++if eval_during_training and not os.path.exists(eval_dir):
++  os.makedirs(eval_dir)
++
++# We add accuracy and xent twice so we can easily make three types of
++# comparisons in Tensorboard:
++# - train vs eval (for a single run)
++# - train of different runs
++# - eval of different runs
++
++saver = tf.train.Saver(max_to_keep=3)
++tf.summary.scalar('accuracy_adv_train', model.accuracy, collections = ['adv'])
++tf.summary.scalar('accuracy_adv', model.accuracy, collections = ['adv'])
++tf.summary.scalar('xent_adv_train', model.xent, collections = ['adv'])
++tf.summary.scalar('xent_adv', model.xent, collections = ['adv'])
++adv_summaries = tf.summary.merge_all('adv')
++
++tf.summary.scalar('accuracy_nat_train', model.accuracy, collections = ['nat'])
++tf.summary.scalar('accuracy_nat', model.accuracy, collections = ['nat'])
++tf.summary.scalar('xent_nat_train', model.xent, collections = ['nat'])
++tf.summary.scalar('xent_nat', model.xent, collections = ['nat'])
++nat_summaries = tf.summary.merge_all('nat')
++
++tf.summary.scalar('avg_un1', model.unstable1, collections = ['unstable'])
++tf.summary.scalar('avg_un2', model.unstable2, collections = ['unstable'])
++tf.summary.scalar('avg_un3', model.unstable3, collections = ['unstable'])
++tf.summary.scalar('avg_un1l', model.un1loss, collections = ['unstable'])
++tf.summary.scalar('avg_un2l', model.un2loss, collections = ['unstable'])
++tf.summary.scalar('avg_un3l', model.un3loss, collections = ['unstable'])
++unstable_summaries = tf.summary.merge_all('unstable')
++
++shutil.copy('config.json', model_dir)
++
++config = tf.ConfigProto()
++config.gpu_options.allow_growth = True
++
++with tf.Session(config=config) as sess:
++  # Initialize the summary writer, global variables, and our time counter.
++  summary_writer = tf.summary.FileWriter(model_dir, sess.graph)
++  if eval_during_training:
++      summary_writer_eval = tf.summary.FileWriter(eval_dir)
++  sess.run(tf.global_variables_initializer())
++  training_time = 0.0
++
++  # Main training loop
++  for ii in range(max_num_training_steps + 1):
++    x_batch, y_batch = raw_dataset.train_data.get_next_batch(
++        batch_size, multiple_passes=True)
++    assert 10 <= x_batch.max() <= 255
++    x_batch = x_batch/255.
++
++    # Compute Adversarial Perturbations
++    start = timer()
++    if adv_training:
++        x_batch_adv = attack.perturb(x_batch, y_batch, sess, ii/max_num_training_steps)
++    else:
++        x_batch_adv = x_batch
++    end = timer()
++    training_time += end - start
++
++    nat_dict = {model.x_input: x_batch,
++                model.x_input_natural: x_batch,
++                model.y_input: y_batch}
++
++    adv_dict = {model.x_input: x_batch_adv,
++                model.x_input_natural: x_batch,
++                model.y_input: y_batch}
++
++    # Output to stdout
++    if ii % num_output_steps == 0:
++      nat_acc = sess.run(model.accuracy, feed_dict=nat_dict)
++      adv_acc = sess.run(model.accuracy, feed_dict=adv_dict)
++      xent, l1, rsloss = sess.run([model.xent, model.l1_loss, model.rsloss], feed_dict=nat_dict)
++      print('\nXent: {}, l1: {}, rsloss: {}'.format(xent, w_l1*l1, w_rsloss*rsloss))
++      print('Step {}:    ({})'.format(ii, datetime.now()))
++      print('    training nat accuracy {:.4}%'.format(nat_acc * 100))
++      print('    training adv accuracy {:.4}%'.format(adv_acc * 100))
++      if ii != 0:
++        print('    {} examples per second'.format(
++            num_output_steps * batch_size / training_time))
++        training_time = 0.0
++
++    # Tensorboard summaries
++    if ii % num_summary_steps == 0:
++      summary = sess.run(adv_summaries, feed_dict=adv_dict)
++      summary_writer.add_summary(summary, global_step.eval(sess))
++      summary = sess.run(nat_summaries, feed_dict=nat_dict)
++      summary_writer.add_summary(summary, global_step.eval(sess))
++
++    # Write a checkpoint
++    if ii % num_checkpoint_steps == 0:
++      saver.save(sess,
++                 os.path.join(model_dir, 'checkpoint'),
++                 global_step=global_step)
++
++    # Evaluate
++    if eval_during_training and ii % num_eval_steps == 0:
++        num_batches = int(math.ceil(num_eval_examples / eval_batch_size))
++        total_xent_nat = 0.
++        total_xent_adv = 0.
++        total_corr_nat = 0
++        total_corr_adv = 0
++        tot_unstable1 = 0
++        tot_unstable2 = 0
++        tot_unstable3 = 0
++        tot_unstable1l = 0
++        tot_unstable2l = 0
++        tot_unstable3l = 0
++
++        for ibatch in trange(num_batches):
++          bstart = ibatch * eval_batch_size
++          bend = min(bstart + eval_batch_size, num_eval_examples)
++
++          x_batch_eval = raw_dataset.eval_data.xs[bstart:bend, :]/255.
++          y_batch_eval = raw_dataset.eval_data.ys[bstart:bend]
++
++          dict_nat_eval = {model.x_input: x_batch_eval,
++                           model.x_input_natural: x_batch_eval,
++                           model.y_input: y_batch_eval}
++
++          x_batch_eval_adv = eval_attack.perturb(x_batch_eval, y_batch_eval, sess)
++
++          dict_adv_eval = {model.x_input: x_batch_eval_adv,
++                           model.x_input_natural: x_batch_eval,
++                           model.y_input: y_batch_eval}
++
++          cur_corr_nat, cur_xent_nat = sess.run(
++                                          [model.num_correct,model.xent],
++                                          feed_dict = dict_nat_eval)
++          cur_corr_adv, cur_xent_adv = sess.run(
++                                          [model.num_correct,model.xent],
++                                          feed_dict = dict_adv_eval)
++          un1, un2, un3 = \
++            sess.run([model.unstable1, model.unstable2, \
++                      model.unstable3],
++                      feed_dict = dict_nat_eval)
++          un1l, un2l, un3l = \
++            sess.run([model.un1loss, model.un2loss, \
++                      model.un3loss],
++                      feed_dict = dict_nat_eval)
++          tot_unstable1 += np.sum(un1)
++          tot_unstable2 += np.sum(un2)
++          tot_unstable3 += np.sum(un3)
++          tot_unstable1l += w_rsloss * un1l
++          tot_unstable2l += w_rsloss * un2l
++          tot_unstable3l += w_rsloss * un3l
++
++          total_xent_nat += cur_xent_nat
++          total_xent_adv += cur_xent_adv
++          total_corr_nat += cur_corr_nat
++          total_corr_adv += cur_corr_adv
++
++        avg_un1 = tot_unstable1 / num_eval_examples
++        avg_un2 = tot_unstable2 / num_eval_examples
++        avg_un3 = tot_unstable3 / num_eval_examples
++        avg_un1l = tot_unstable1l / num_eval_examples
++        avg_un2l = tot_unstable2l / num_eval_examples
++        avg_un3l = tot_unstable3l / num_eval_examples
++
++        avg_xent_nat = total_xent_nat / num_eval_examples
++        avg_xent_adv = total_xent_adv / num_eval_examples
++        acc_nat = total_corr_nat / num_eval_examples
++        acc_adv = total_corr_adv / num_eval_examples
++
++        summary = tf.Summary(value=[
++              tf.Summary.Value(tag='xent_adv_eval', simple_value= avg_xent_adv),
++              tf.Summary.Value(tag='xent_adv', simple_value= avg_xent_adv),
++              tf.Summary.Value(tag='xent_nat_eval', simple_value= avg_xent_nat),
++              tf.Summary.Value(tag='xent_nat', simple_value= avg_xent_nat),
++              tf.Summary.Value(tag='accuracy_adv_eval', simple_value= acc_adv),
++              tf.Summary.Value(tag='accuracy_adv', simple_value= acc_adv),
++              tf.Summary.Value(tag='accuracy_nat_eval', simple_value= acc_nat),
++              tf.Summary.Value(tag='accuracy_nat', simple_value= acc_nat),
++              tf.Summary.Value(tag='avg_un1l', simple_value= avg_un1l),
++              tf.Summary.Value(tag='avg_un2l', simple_value= avg_un2l),
++              tf.Summary.Value(tag='avg_un3l', simple_value= avg_un3l),
++              tf.Summary.Value(tag='avg_un1', simple_value= avg_un1),
++              tf.Summary.Value(tag='avg_un2', simple_value= avg_un2),
++              tf.Summary.Value(tag='avg_un3', simple_value= avg_un3)])
++        summary_writer_eval.add_summary(summary, global_step.eval(sess))
++
++        print('Eval at {}:'.format(ii))
++        print('  natural: {:.2f}%'.format(100 * acc_nat))
++        print('  adversarial: {:.2f}%'.format(100 * acc_adv))
++        print('  avg nat loss: {:.4f}'.format(avg_xent_nat))
++        print('  avg adv loss: {:.4f}'.format(avg_xent_adv))
++        print('  un1, un2, un3: {}, {}, {}'.format(avg_un1,
++            avg_un2, avg_un3))
++        print('  un1l, un2l, un3l: {}, {}, {}'.format(avg_un1l,
++            avg_un2l, avg_un3l))
++        results = {'natural': 100 * acc_nat,
++                   'adversarial': 100 * acc_adv,
++                   'un1': avg_un1,
++                   'un2': avg_un2,
++                   'un3': avg_un3,
++                   }
++        with open('job_result.json', 'w') as result_file:
++            json.dump(results, result_file, sort_keys=True, indent=4)
++
++    # Actual training step
++    start = timer()
++    sess.run(train_step, feed_dict=adv_dict)
++    end = timer()
++    training_time += end - start
+diff --git a/verification/verify_MNIST.jl b/verification/verify_MNIST.jl
+index ec41496..67f6465 100644
+--- a/verification/verify_MNIST.jl
++++ b/verification/verify_MNIST.jl
+@@ -21,11 +21,12 @@ end
+ path="./model_mats/$(model_name).mat"
+ param_dict = path |> matread
+ 
+-c1_size = 3136
+-c2_size = 1568
++inp_size = 32
++c1_size = inp_size * inp_size ÷ 4 * 16
++c2_size = inp_size * inp_size ÷ 16 * 32
+ c3_size = 100
+ 
+-fc1 = get_matrix_params(param_dict, "fc1", (784, c1_size))
++fc1 = get_matrix_params(param_dict, "fc1", (inp_size*inp_size*3, c1_size))
+ if haskey(param_dict, "fc1/mask")
+     m1 = MaskedReLU(squeeze(param_dict["fc1/mask"], 1), interval_arithmetic)
+ else
+@@ -50,7 +51,7 @@ nnparams = Sequential(
+     "$(model_name)"
+ )
+ 
+-mnist = read_datasets("MNIST")
++mnist = read_datasets("CIFAR10")
+ 
+ f = frac_correct(nnparams, mnist.test, 10000)
+ println("Fraction correct: $(f)")
+@@ -60,17 +61,20 @@ target_indexes = start_index:end_index
+ 
+ MIPVerify.setloglevel!("info")
+ 
++env = Gurobi.Env()
++setparam!(env, "Threads", 8)
++
+ MIPVerify.batch_find_untargeted_attack(
+-    nnparams, 
+-    mnist.test, 
+-    target_indexes, 
+-    GurobiSolver(Gurobi.Env(), BestObjStop=eps, TimeLimit=120),
++    nnparams,
++    mnist.test,
++    target_indexes,
++    GurobiSolver(env, BestObjStop=eps, TimeLimit=120),
+     save_path="./verification/results/",
+-    norm_order=Inf, 
++    norm_order=Inf,
+     tightening_algorithm=lp,
+     rebuild=false,
+     cache_model=false,
+-    tightening_solver=GurobiSolver(Gurobi.Env(), TimeLimit=5, OutputFlag=0),
++    tightening_solver=GurobiSolver(env, TimeLimit=5, OutputFlag=0),
+     pp = MIPVerify.LInfNormBoundedPerturbationFamily(eps),
+     solve_rerun_option = MIPVerify.resolve_ambiguous_cases
+ )

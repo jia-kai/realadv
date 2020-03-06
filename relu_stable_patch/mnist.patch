@@ -1,0 +1,55 @@
+diff --git a/config.json b/config.json
+index ef7522e..0bddddb 100644
+--- a/config.json
++++ b/config.json
+@@ -1,8 +1,8 @@
+ {
+   "_comment": "===== RS LOSS CONFIGURATION =====",
+   "w_l1": 2e-5,
+-  "w_rsloss": 1e-4,
+-  
++  "w_rsloss": 8e-4,
++
+   "_comment": "===== MODEL CONFIGURATION =====",
+   "model_dir": "trained_models/relu_stable",
+   "estimation_method": "naive_ia",
+@@ -12,7 +12,7 @@
+ 
+   "_comment": "===== TRAINING CONFIGURATION =====",
+   "random_seed": 845234,
+-  "max_num_training_steps": 10000,
++  "max_num_training_steps": 65625,
+   "num_output_steps": 100,
+   "num_summary_steps": 100,
+   "num_checkpoint_steps": 500,
+diff --git a/verification/verify_MNIST.jl b/verification/verify_MNIST.jl
+index ec41496..4596da3 100644
+--- a/verification/verify_MNIST.jl
++++ b/verification/verify_MNIST.jl
+@@ -60,17 +60,20 @@ target_indexes = start_index:end_index
+ 
+ MIPVerify.setloglevel!("info")
+ 
++env = Gurobi.Env()
++setparam!(env, "Threads", 8)
++
+ MIPVerify.batch_find_untargeted_attack(
+-    nnparams, 
+-    mnist.test, 
+-    target_indexes, 
+-    GurobiSolver(Gurobi.Env(), BestObjStop=eps, TimeLimit=120),
++    nnparams,
++    mnist.test,
++    target_indexes,
++    GurobiSolver(env, BestObjStop=eps, TimeLimit=120),
+     save_path="./verification/results/",
+-    norm_order=Inf, 
++    norm_order=Inf,
+     tightening_algorithm=lp,
+     rebuild=false,
+     cache_model=false,
+-    tightening_solver=GurobiSolver(Gurobi.Env(), TimeLimit=5, OutputFlag=0),
++    tightening_solver=GurobiSolver(env, TimeLimit=5, OutputFlag=0),
+     pp = MIPVerify.LInfNormBoundedPerturbationFamily(eps),
+     solve_rerun_option = MIPVerify.resolve_ambiguous_cases
+ )

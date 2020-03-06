@@ -1,0 +1,187 @@
+preprocessing on output/mnist/1212.model
+adv_loss=1.5184226036071777 adv_loss_mm=1.51842200756073 inp_loss=5.792226791381836 gap=0
+preprocessing on output/mnist/1459.model
+adv_loss=1.0982179641723633 adv_loss_mm=1.0982179641723633 inp_loss=5.227838039398193 gap=0
+preprocessing on output/mnist/1461.model
+adv_loss=2.0746445655822754 adv_loss_mm=2.0746452808380127 inp_loss=5.423094749450684 gap=0
+preprocessing on output/mnist/2641.model
+adv_loss=2.2001752853393555 adv_loss_mm=2.200176239013672 inp_loss=5.337521076202393 gap=0
+preprocessing on output/mnist/2782.model
+adv_loss=0.039579808712005615 adv_loss_mm=0.03957867622375488 inp_loss=3.493598222732544 gap=0
+preprocessing on output/mnist/3860.model
+adv_loss=3.6739730834960938 adv_loss_mm=3.673973560333252 inp_loss=7.539006233215332 gap=0
+preprocessing on output/mnist/3966.model
+adv_loss=1.7583370208740234e-06 adv_loss_mm=1.6987323760986328e-06 inp_loss=2.7201294898986816 gap=0
+preprocessing on output/mnist/41.model
+adv_loss=2.205371856689453e-06 adv_loss_mm=2.562999725341797e-06 inp_loss=2.5272536277770996 gap=0
+preprocessing on output/mnist/4798.model
+adv_loss=0.8083765506744385 adv_loss_mm=0.8083771467208862 inp_loss=4.0108747482299805 gap=0
+preprocessing on output/mnist/6327.model
+adv_loss=1.8775463104248047e-06 adv_loss_mm=1.7583370208740234e-06 inp_loss=3.296889543533325 gap=0
+preprocessing on output/mnist/6576.model
+adv_loss=1.6094632148742676 adv_loss_mm=1.6094621419906616 inp_loss=4.571714878082275 gap=0
+preprocessing on output/mnist/6791.model
+adv_loss=0.09270855784416199 adv_loss_mm=0.0927092432975769 inp_loss=3.9481215476989746 gap=0
+preprocessing on output/mnist/6929.model
+adv_loss=1.8453514575958252 adv_loss_mm=1.8453518152236938 inp_loss=6.63316535949707 gap=0
+preprocessing on output/mnist/7186.model
+adv_loss=1.3113021850585938e-06 adv_loss_mm=2.384185791015625e-06 inp_loss=3.5544934272766113 gap=0
+preprocessing on output/mnist/850.model
+adv_loss=4.291534423828125e-06 adv_loss_mm=4.76837158203125e-06 inp_loss=3.725203514099121 gap=0
+preprocessing on output/mnist/8571.model
+adv_loss=4.291534423828125e-06 adv_loss_mm=3.337860107421875e-06 inp_loss=3.5111231803894043 gap=0
+preprocessing on output/mnist/890.model
+adv_loss=9.5367431640625e-07 adv_loss_mm=1.6689300537109375e-06 inp_loss=2.503291130065918 gap=0
+preprocessing on output/mnist/9285.model
+adv_loss=0.4836263656616211 adv_loss_mm=0.48362767696380615 inp_loss=3.455671787261963 gap=0
+working on output/mnist/890.model with loss=1.66893e-06
+#0: loss: 1.66893e-06 -> 1.19209e-06 diff=4.77e-07,4.77e-07 Linf=1.937e-07
+#0: loss: 1.19209e-06 -> 9.53674e-07 diff=7.15e-07,7.15e-07 Linf=1.937e-07
+#0: loss: 9.53674e-07 -> 7.15256e-07 diff=9.54e-07,9.54e-07 Linf=1.937e-07
+#2: loss: 7.15256e-07 -> 5.96046e-07 diff=1.07e-06,1.07e-06 Linf=1.937e-07
+#11: loss: 5.96046e-07 -> 4.76837e-07 diff=1.19e-06,1.19e-06 Linf=1.937e-07
+#17: loss: 4.76837e-07 -> 2.38419e-07 diff=1.43e-06,1.43e-06 Linf=2.980e-07
+#126: loss: 2.38419e-07 -> 1.19209e-07 diff=1.55e-06,1.55e-06 Linf=2.980e-07
+#144: loss: 1.19209e-07 -> 0.00000e+00 diff=1.67e-06,1.67e-06 Linf=2.980e-07
+#150: loss: 0.00000e+00 -> -1.19209e-07 diff=1.79e-06,1.79e-06 Linf=3.780e-07
+conv [-4.98 -7.59  0.75 -1.23 -7.24 -9.37 -8.33  0.75 -2.24 -2.19] l=7 cw=1.43e-06
+mm   [-4.98 -7.59  0.75 -1.23 -7.24 -9.37 -8.33  0.75 -2.24 -2.19] l=2 cw=-1.19e-07
+test acc: 98.57%
+working on output/mnist/3966.model with loss=1.6987324e-06
+#0: loss: 1.69873e-06 -> 1.28150e-06 diff=4.17e-07,4.17e-07 Linf=1.788e-07
+#0: loss: 1.28150e-06 -> 1.16229e-06 diff=5.36e-07,5.36e-07 Linf=1.886e-07
+#0: loss: 1.16229e-06 -> 9.23872e-07 diff=7.75e-07,7.75e-07 Linf=1.886e-07
+#1: loss: 9.23872e-07 -> 8.64267e-07 diff=8.34e-07,8.34e-07 Linf=1.886e-07
+#2: loss: 8.64267e-07 -> 8.04663e-07 diff=8.94e-07,8.94e-07 Linf=1.886e-07
+#6: loss: 8.04663e-07 -> 6.85453e-07 diff=1.01e-06,1.01e-06 Linf=2.012e-07
+#6: loss: 6.85453e-07 -> 6.25849e-07 diff=1.07e-06,1.07e-06 Linf=2.042e-07
+#14: loss: 6.25849e-07 -> 5.06639e-07 diff=1.19e-06,1.19e-06 Linf=2.810e-07
+#34: loss: 5.06639e-07 -> 3.27826e-07 diff=1.37e-06,1.37e-06 Linf=2.810e-07
+#617: loss: 3.27826e-07 -> 2.68221e-07 diff=1.43e-06,1.43e-06 Linf=2.810e-07
+working on output/mnist/6327.model with loss=1.758337e-06
+#0: loss: 1.75834e-06 -> 1.63913e-06 diff=1.19e-07,1.19e-07 Linf=2.012e-07
+#0: loss: 1.63913e-06 -> 1.04308e-06 diff=7.15e-07,7.15e-07 Linf=2.012e-07
+#2: loss: 1.04308e-06 -> 8.04663e-07 diff=9.54e-07,9.54e-07 Linf=2.235e-07
+#5: loss: 8.04663e-07 -> 5.66244e-07 diff=1.19e-06,1.19e-06 Linf=2.235e-07
+#11: loss: 5.66244e-07 -> 3.27826e-07 diff=1.43e-06,1.43e-06 Linf=2.235e-07
+#15: loss: 3.27826e-07 -> 2.68221e-07 diff=1.49e-06,1.49e-06 Linf=2.235e-07
+#112: loss: 2.68221e-07 -> 2.08616e-07 diff=1.55e-06,1.55e-06 Linf=2.235e-07
+working on output/mnist/7186.model with loss=2.3841858e-06
+#0: loss: 2.38419e-06 -> 1.90735e-06 diff=4.77e-07,4.77e-07 Linf=1.937e-07
+#3: loss: 1.90735e-06 -> 1.78814e-06 diff=5.96e-07,5.96e-07 Linf=1.937e-07
+#4: loss: 1.78814e-06 -> 1.31130e-06 diff=1.07e-06,1.07e-06 Linf=2.541e-07
+#13: loss: 1.31130e-06 -> 1.19209e-06 diff=1.19e-06,1.19e-06 Linf=2.541e-07
+#18: loss: 1.19209e-06 -> 1.07288e-06 diff=1.31e-06,1.31e-06 Linf=2.541e-07
+#181: loss: 1.07288e-06 -> 9.53674e-07 diff=1.43e-06,1.43e-06 Linf=3.278e-07
+#186: loss: 9.53674e-07 -> 8.34465e-07 diff=1.55e-06,1.55e-06 Linf=3.278e-07
+#240: loss: 8.34465e-07 -> 7.15256e-07 diff=1.67e-06,1.67e-06 Linf=3.651e-07
+working on output/mnist/41.model with loss=2.5629997e-06
+#0: loss: 2.56300e-06 -> 2.50340e-06 diff=5.96e-08,5.96e-08 Linf=2.012e-07
+#0: loss: 2.50340e-06 -> 2.26498e-06 diff=2.98e-07,2.98e-07 Linf=2.012e-07
+#2: loss: 2.26498e-06 -> 2.14577e-06 diff=4.17e-07,4.17e-07 Linf=2.012e-07
+#4: loss: 2.14577e-06 -> 1.72853e-06 diff=8.34e-07,8.34e-07 Linf=3.069e-07
+#7: loss: 1.72853e-06 -> 1.66893e-06 diff=8.94e-07,8.94e-07 Linf=3.069e-07
+#12: loss: 1.66893e-06 -> 1.43051e-06 diff=1.13e-06,1.13e-06 Linf=3.069e-07
+#17: loss: 1.43051e-06 -> 1.37091e-06 diff=1.19e-06,1.19e-06 Linf=3.033e-07
+#126: loss: 1.37091e-06 -> 1.31130e-06 diff=1.25e-06,1.25e-06 Linf=3.033e-07
+#260: loss: 1.31130e-06 -> 1.13249e-06 diff=1.43e-06,1.43e-06 Linf=3.033e-07
+#514: loss: 1.13249e-06 -> 1.01328e-06 diff=1.55e-06,1.55e-06 Linf=3.033e-07
+working on output/mnist/8571.model with loss=3.33786e-06
+#0: loss: 3.33786e-06 -> 3.09944e-06 diff=2.38e-07,2.38e-07 Linf=1.937e-07
+#0: loss: 3.09944e-06 -> 2.86102e-06 diff=4.77e-07,4.77e-07 Linf=1.990e-07
+#2: loss: 2.86102e-06 -> 2.62260e-06 diff=7.15e-07,7.15e-07 Linf=1.990e-07
+#3: loss: 2.62260e-06 -> 1.90735e-06 diff=1.43e-06,1.43e-06 Linf=2.384e-07
+#89: loss: 1.90735e-06 -> 1.66893e-06 diff=1.67e-06,1.67e-06 Linf=2.384e-07
+#716: loss: 1.66893e-06 -> 1.19209e-06 diff=2.15e-06,2.15e-06 Linf=2.384e-07
+#979: loss: 1.19209e-06 -> 7.15256e-07 diff=2.62e-06,2.62e-06 Linf=3.800e-07
+working on output/mnist/850.model with loss=4.7683716e-06
+#0: loss: 4.76837e-06 -> 4.64916e-06 diff=1.19e-07,1.19e-07 Linf=1.863e-07
+#0: loss: 4.64916e-06 -> 4.52995e-06 diff=2.38e-07,2.38e-07 Linf=2.000e-07
+#8: loss: 4.52995e-06 -> 4.41074e-06 diff=3.58e-07,3.58e-07 Linf=2.000e-07
+#13: loss: 4.41074e-06 -> 4.17233e-06 diff=5.96e-07,5.96e-07 Linf=3.209e-07
+#32: loss: 4.17233e-06 -> 4.05312e-06 diff=7.15e-07,7.15e-07 Linf=3.209e-07
+#140: loss: 4.05312e-06 -> 3.93391e-06 diff=8.34e-07,8.34e-07 Linf=3.209e-07
+#144: loss: 3.93391e-06 -> 3.81470e-06 diff=9.54e-07,9.54e-07 Linf=3.209e-07
+working on output/mnist/2782.model with loss=0.039578676
+#0: loss: 3.95787e-02 -> 3.95780e-02 diff=6.85e-07,6.85e-07 Linf=2.384e-07
+#0: loss: 3.95780e-02 -> 3.95779e-02 diff=7.75e-07,7.75e-07 Linf=2.384e-07
+#0: loss: 3.95779e-02 -> 3.95779e-02 diff=8.05e-07,8.05e-07 Linf=2.384e-07
+#9: loss: 3.95779e-02 -> 3.95778e-02 diff=8.34e-07,8.34e-07 Linf=2.384e-07
+#13: loss: 3.95778e-02 -> 3.95777e-02 diff=1.01e-06,1.01e-06 Linf=2.384e-07
+#13: loss: 3.95777e-02 -> 3.95776e-02 diff=1.10e-06,1.10e-06 Linf=2.384e-07
+#16: loss: 3.95776e-02 -> 3.95775e-02 diff=1.22e-06,1.22e-06 Linf=2.384e-07
+#45: loss: 3.95775e-02 -> 3.95773e-02 diff=1.34e-06,1.34e-06 Linf=2.384e-07
+#284: loss: 3.95773e-02 -> 3.95773e-02 diff=1.40e-06,1.40e-06 Linf=2.384e-07
+#343: loss: 3.95773e-02 -> 3.95772e-02 diff=1.43e-06,1.43e-06 Linf=2.384e-07
+#395: loss: 3.95772e-02 -> 3.95772e-02 diff=1.49e-06,1.49e-06 Linf=2.384e-07
+#677: loss: 3.95772e-02 -> 3.95771e-02 diff=1.61e-06,1.61e-06 Linf=2.400e-07
+working on output/mnist/6791.model with loss=0.09270924
+#0: loss: 9.27092e-02 -> 9.27091e-02 diff=1.49e-07,1.49e-07 Linf=2.086e-07
+#1: loss: 9.27091e-02 -> 9.27088e-02 diff=4.77e-07,4.77e-07 Linf=2.086e-07
+#1: loss: 9.27088e-02 -> 9.27086e-02 diff=6.26e-07,6.26e-07 Linf=2.086e-07
+#1: loss: 9.27086e-02 -> 9.27085e-02 diff=7.45e-07,7.45e-07 Linf=2.086e-07
+#2: loss: 9.27085e-02 -> 9.27083e-02 diff=9.54e-07,9.54e-07 Linf=2.086e-07
+#4: loss: 9.27083e-02 -> 9.27082e-02 diff=1.01e-06,1.01e-06 Linf=3.546e-07
+#5: loss: 9.27082e-02 -> 9.27080e-02 diff=1.25e-06,1.25e-06 Linf=3.546e-07
+#9: loss: 9.27080e-02 -> 9.27078e-02 diff=1.49e-06,1.49e-06 Linf=3.546e-07
+#62: loss: 9.27078e-02 -> 9.27077e-02 diff=1.52e-06,1.52e-06 Linf=5.238e-07
+working on output/mnist/9285.model with loss=0.48362768
+#0: loss: 4.83628e-01 -> 4.83627e-01 diff=2.38e-07,2.38e-07 Linf=1.788e-07
+#1: loss: 4.83627e-01 -> 4.83627e-01 diff=4.77e-07,4.77e-07 Linf=3.576e-07
+#1: loss: 4.83627e-01 -> 4.83627e-01 diff=7.15e-07,7.15e-07 Linf=3.576e-07
+#1: loss: 4.83627e-01 -> 4.83627e-01 diff=9.54e-07,9.54e-07 Linf=3.576e-07
+#902: loss: 4.83627e-01 -> 4.83626e-01 diff=1.19e-06,1.19e-06 Linf=3.576e-07
+#998: loss: 4.83626e-01 -> 4.83626e-01 diff=1.31e-06,1.31e-06 Linf=3.576e-07
+working on output/mnist/4798.model with loss=0.80837715
+#0: loss: 8.08377e-01 -> 8.08377e-01 diff=1.79e-07,1.79e-07 Linf=1.863e-07
+#0: loss: 8.08377e-01 -> 8.08377e-01 diff=2.38e-07,2.38e-07 Linf=1.863e-07
+#0: loss: 8.08377e-01 -> 8.08377e-01 diff=5.36e-07,5.36e-07 Linf=1.863e-07
+#0: loss: 8.08377e-01 -> 8.08377e-01 diff=5.96e-07,5.96e-07 Linf=1.949e-07
+#2: loss: 8.08377e-01 -> 8.08376e-01 diff=8.34e-07,8.34e-07 Linf=1.949e-07
+#13: loss: 8.08376e-01 -> 8.08376e-01 diff=1.07e-06,1.07e-06 Linf=1.957e-07
+#25: loss: 8.08376e-01 -> 8.08376e-01 diff=1.31e-06,1.31e-06 Linf=2.384e-07
+#37: loss: 8.08376e-01 -> 8.08376e-01 diff=1.55e-06,1.55e-06 Linf=2.384e-07
+#213: loss: 8.08376e-01 -> 8.08375e-01 diff=1.67e-06,1.67e-06 Linf=2.384e-07
+working on output/mnist/1459.model with loss=1.098218
+#0: loss: 1.09822e+00 -> 1.09822e+00 diff=1.19e-07,1.19e-07 Linf=1.788e-07
+#0: loss: 1.09822e+00 -> 1.09822e+00 diff=3.58e-07,3.58e-07 Linf=1.990e-07
+#0: loss: 1.09822e+00 -> 1.09822e+00 diff=5.96e-07,5.96e-07 Linf=1.990e-07
+#1: loss: 1.09822e+00 -> 1.09822e+00 diff=7.15e-07,7.15e-07 Linf=3.425e-07
+#7: loss: 1.09822e+00 -> 1.09822e+00 diff=8.34e-07,8.34e-07 Linf=3.425e-07
+#18: loss: 1.09822e+00 -> 1.09822e+00 diff=9.54e-07,9.54e-07 Linf=3.425e-07
+#18: loss: 1.09822e+00 -> 1.09822e+00 diff=1.07e-06,1.07e-06 Linf=4.184e-07
+#202: loss: 1.09822e+00 -> 1.09822e+00 diff=1.19e-06,1.19e-06 Linf=4.184e-07
+#601: loss: 1.09822e+00 -> 1.09822e+00 diff=1.43e-06,1.43e-06 Linf=4.184e-07
+#793: loss: 1.09822e+00 -> 1.09822e+00 diff=1.67e-06,1.67e-06 Linf=4.184e-07
+working on output/mnist/1212.model with loss=1.518422
+#0: loss: 1.51842e+00 -> 1.51842e+00 diff=4.77e-07,4.77e-07 Linf=1.714e-07
+#0: loss: 1.51842e+00 -> 1.51842e+00 diff=7.15e-07,7.15e-07 Linf=1.863e-07
+#0: loss: 1.51842e+00 -> 1.51842e+00 diff=8.34e-07,8.34e-07 Linf=2.384e-07
+#1: loss: 1.51842e+00 -> 1.51842e+00 diff=1.07e-06,1.07e-06 Linf=2.384e-07
+#35: loss: 1.51842e+00 -> 1.51842e+00 diff=1.31e-06,1.31e-06 Linf=2.384e-07
+working on output/mnist/6576.model with loss=1.6094621
+#0: loss: 1.60946e+00 -> 1.60946e+00 diff=2.38e-07,2.38e-07 Linf=1.993e-07
+#1: loss: 1.60946e+00 -> 1.60946e+00 diff=3.58e-07,3.58e-07 Linf=1.993e-07
+#1: loss: 1.60946e+00 -> 1.60946e+00 diff=5.96e-07,5.96e-07 Linf=2.086e-07
+#1: loss: 1.60946e+00 -> 1.60946e+00 diff=1.07e-06,1.07e-06 Linf=2.086e-07
+#936: loss: 1.60946e+00 -> 1.60946e+00 diff=1.19e-06,1.19e-06 Linf=2.086e-07
+working on output/mnist/6929.model with loss=1.8453518
+#0: loss: 1.84535e+00 -> 1.84535e+00 diff=7.15e-07,7.15e-07 Linf=1.788e-07
+#0: loss: 1.84535e+00 -> 1.84535e+00 diff=9.54e-07,9.54e-07 Linf=1.788e-07
+#14: loss: 1.84535e+00 -> 1.84535e+00 diff=1.07e-06,1.07e-06 Linf=1.788e-07
+#30: loss: 1.84535e+00 -> 1.84535e+00 diff=1.19e-06,1.19e-06 Linf=1.788e-07
+#71: loss: 1.84535e+00 -> 1.84535e+00 diff=1.31e-06,1.31e-06 Linf=1.788e-07
+#80: loss: 1.84535e+00 -> 1.84535e+00 diff=1.55e-06,1.55e-06 Linf=1.788e-07
+working on output/mnist/1461.model with loss=2.0746453
+#0: loss: 2.07465e+00 -> 2.07465e+00 diff=2.38e-07,2.38e-07 Linf=1.960e-07
+#0: loss: 2.07465e+00 -> 2.07464e+00 diff=4.77e-07,4.77e-07 Linf=2.384e-07
+#0: loss: 2.07464e+00 -> 2.07464e+00 diff=1.19e-06,1.19e-06 Linf=2.384e-07
+#49: loss: 2.07464e+00 -> 2.07464e+00 diff=1.43e-06,1.43e-06 Linf=2.384e-07
+#77: loss: 2.07464e+00 -> 2.07464e+00 diff=1.67e-06,1.67e-06 Linf=3.351e-07
+working on output/mnist/2641.model with loss=2.2001762
+#0: loss: 2.20018e+00 -> 2.20018e+00 diff=7.15e-07,7.15e-07 Linf=2.086e-07
+#1: loss: 2.20018e+00 -> 2.20018e+00 diff=9.54e-07,9.54e-07 Linf=2.086e-07
+#478: loss: 2.20018e+00 -> 2.20018e+00 diff=1.19e-06,1.19e-06 Linf=2.086e-07
+working on output/mnist/3860.model with loss=3.6739736
+#0: loss: 3.67397e+00 -> 3.67397e+00 diff=4.77e-07,4.77e-07 Linf=1.863e-07
+#40: loss: 3.67397e+00 -> 3.67397e+00 diff=9.54e-07,9.54e-07 Linf=1.863e-07

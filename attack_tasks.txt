@@ -1,0 +1,20 @@
+mnist
+mnist --cpu
+mnist --cpu --mm
+mnist --mm
+mnist --stable
+mnist --no-gap
+mnist --no-gap --cpu
+mnist --no-gap --cpu --mm
+mnist --no-gap --mm
+mnist --no-gap --stable
+cifar10
+cifar10 --cpu
+cifar10 --cpu --mm
+cifar10 --mm
+cifar10 --stable
+cifar10 --no-gap
+cifar10 --no-gap --cpu
+cifar10 --no-gap --cpu --mm
+cifar10 --no-gap --mm
+cifar10 --no-gap --stable
