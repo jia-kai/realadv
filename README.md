@@ -1,7 +1,7 @@
 # realadv
 
 Code for the paper [Exploiting Verified Neural Networks via Floating Point
-Numerical Error](TBD).
+Numerical Error](https://arxiv.org/abs/2003.03021).
 
 ## Steps for reproduction
 
@@ -26,3 +26,16 @@ Numerical Error](TBD).
 Attack logs and adversarial images for the experiments reported in the paper are
 available in [result](result). Run `python -m realadv view_attack` to view
 adversarial images.
+
+## Citation
+
+```txt
+@misc{jia2020exploiting,
+    title={Exploiting Verified Neural Networks via Floating Point Numerical Error},
+    author={Kai Jia and Martin Rinard},
+    year={2020},
+    eprint={2003.03021},
+    archivePrefix={arXiv},
+    primaryClass={cs.LG}
+}
+```
