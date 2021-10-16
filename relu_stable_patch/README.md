@@ -11,6 +11,7 @@ cd /path/to/relu_stable
 git checkout af53612
 patch -Np1 -i /path/to/relu_stable_patch/mnist.patch
 python train.py
+python post_process_model.py --model_dir 'trained_models/relu_stable' --output example --do_eval --no_relu_prune
 ./verification/verify.sh example 0.1
 ```
 
@@ -21,5 +22,6 @@ cd /path/to/relu_stable
 git checkout af53612
 patch -Np1 -i /path/to/relu_stable_patch/cifar10.patch
 python train_naive_cifar_ia.py
+python post_process_model.py --model_dir 'trained_models/relu_stable' --output example --do_eval --no_relu_prune
 ./verification/verify.sh example 0.00784313725490196
 ```

@@ -1,0 +1,191 @@
+======= RUNNING CPU matmul =======
+Sequential(
+  (0): Flatten()
+  (1): Linear(in_features=169, out_features=81, bias=True)
+  (2): ReLU()
+  (3): Linear(in_features=81, out_features=16, bias=True)
+  (4): ReLU()
+  (5): Linear(in_features=16, out_features=16, bias=True)
+  (6): ReLU()
+  (7): Linear(in_features=16, out_features=1, bias=True)
+  (8): ReLU()
+  (9): Linear(in_features=1, out_features=2, bias=True)
+)
+iter 0: iscore=9.778887033462524e-08
+iter 118: iscore=9.872019290924072e-08
+iter 1218: iscore=9.96515154838562e-08
+iter 2582: iscore=1.0058283805847168e-07
+iter 2889: iscore=1.0151416063308716e-07
+iter 5295: iscore=1.0244548320770264e-07
+cw0=3.1424534e-09 cw=-2.445482e-09
+succ=True
+======= RUNNING CPU conv =======
+Sequential(
+  (0): Conv2d(1, 1, kernel_size=(5, 5), stride=(1, 1))
+  (1): Flatten()
+  (2): ReLU()
+  (3): Linear(in_features=81, out_features=16, bias=True)
+  (4): ReLU()
+  (5): Linear(in_features=16, out_features=16, bias=True)
+  (6): ReLU()
+  (7): Linear(in_features=16, out_features=1, bias=True)
+  (8): ReLU()
+  (9): Linear(in_features=1, out_features=2, bias=True)
+)
+iter 2: iscore=1.0244548320770264e-07
+iter 8: iscore=1.0337680578231812e-07
+iter 116: iscore=1.043081283569336e-07
+iter 491: iscore=1.0523945093154907e-07
+iter 554: iscore=1.0617077350616455e-07
+cw0=-1.5141595e-09 cw=-6.1707723e-09
+succ=True
+======= RUNNING GPU mm =======
+found cudnn: /usr/lib/libcudnn.so.7.6.5
+Sequential(
+  (0): Flatten()
+  (1): Linear(in_features=169, out_features=81, bias=True)
+  (2): ReLU()
+  (3): Linear(in_features=81, out_features=16, bias=True)
+  (4): ReLU()
+  (5): Linear(in_features=16, out_features=16, bias=True)
+  (6): ReLU()
+  (7): Linear(in_features=16, out_features=1, bias=True)
+  (8): ReLU()
+  (9): Linear(in_features=1, out_features=2, bias=True)
+)
+iter 0: iscore=9.685754776000977e-08
+iter 3: iscore=9.778887033462524e-08
+iter 15: iscore=9.872019290924072e-08
+iter 33: iscore=9.96515154838562e-08
+iter 42: iscore=1.0058283805847168e-07
+iter 102: iscore=1.0151416063308716e-07
+iter 1003: iscore=1.0244548320770264e-07
+iter 1475: iscore=1.0337680578231812e-07
+iter 1850: iscore=1.043081283569336e-07
+iter 2193: iscore=1.0523945093154907e-07
+iter 2307: iscore=1.0617077350616455e-07
+iter 2319: iscore=1.0710209608078003e-07
+iter 3234: iscore=1.0803341865539551e-07
+cw0=4.073776e-09 cw=-8.0334175e-09
+succ=True
+======= RUNNING GPU conv =======
+found cudnn: /usr/lib/libcudnn.so.7.6.5
+Sequential(
+  (0): Conv2d(1, 1, kernel_size=(5, 5), stride=(1, 1))
+  (1): Flatten()
+  (2): ReLU()
+  (3): Linear(in_features=81, out_features=16, bias=True)
+  (4): ReLU()
+  (5): Linear(in_features=16, out_features=16, bias=True)
+  (6): ReLU()
+  (7): Linear(in_features=16, out_features=1, bias=True)
+  (8): ReLU()
+  (9): Linear(in_features=1, out_features=2, bias=True)
+)
+iter 3: iscore=1.0337680578231812e-07
+iter 40: iscore=1.043081283569336e-07
+iter 118: iscore=1.0523945093154907e-07
+iter 239: iscore=1.0617077350616455e-07
+iter 348: iscore=1.0710209608078003e-07
+iter 696: iscore=1.0803341865539551e-07
+iter 809: iscore=1.0896474123001099e-07
+cw0=-1.5141595e-09 cw=-8.96474e-09
+succ=True
+======= RUNNING GPU Winograd =======
+found cudnn: /usr/lib/libcudnn.so.7.6.5
+Sequential(
+  (0): Conv2d(1, 1, kernel_size=(5, 5), stride=(1, 1))
+  (1): Flatten()
+  (2): ReLU()
+  (3): Linear(in_features=81, out_features=16, bias=True)
+  (4): ReLU()
+  (5): Linear(in_features=16, out_features=16, bias=True)
+  (6): ReLU()
+  (7): Linear(in_features=16, out_features=1, bias=True)
+  (8): ReLU()
+  (9): Linear(in_features=1, out_features=2, bias=True)
+)
+iter 0: iscore=-1.2898817658424377e-06
+iter 2: iscore=-3.948807716369629e-07
+iter 24: iscore=-2.859160304069519e-07
+iter 42: iscore=-2.7008354663848877e-07
+iter 52: iscore=-2.6728957891464233e-07
+iter 70: iscore=5.122274160385132e-07
+iter 76: iscore=5.448237061500549e-07
+iter 105: iscore=5.569308996200562e-07
+iter 118: iscore=7.050111889839172e-07
+iter 123: iscore=1.1743977665901184e-06
+iter 124: iscore=1.1762604117393494e-06
+iter 151: iscore=1.1809170246124268e-06
+iter 166: iscore=1.1865049600601196e-06
+iter 173: iscore=1.1976808309555054e-06
+iter 175: iscore=1.9241124391555786e-06
+iter 187: iscore=1.9492581486701965e-06
+iter 192: iscore=1.952052116394043e-06
+iter 197: iscore=2.086162567138672e-06
+iter 225: iscore=2.088025212287903e-06
+iter 327: iscore=2.0936131477355957e-06
+iter 492: iscore=2.103857696056366e-06
+iter 538: iscore=2.1634623408317566e-06
+iter 548: iscore=2.1988525986671448e-06
+iter 549: iscore=2.2724270820617676e-06
+iter 570: iscore=2.341344952583313e-06
+iter 589: iscore=2.3599714040756226e-06
+iter 685: iscore=2.3618340492248535e-06
+iter 690: iscore=2.378597855567932e-06
+iter 768: iscore=2.3925676941871643e-06
+iter 813: iscore=2.3934990167617798e-06
+iter 873: iscore=2.4084001779556274e-06
+iter 936: iscore=2.5462359189987183e-06
+iter 943: iscore=2.8703361749649048e-06
+iter 959: iscore=3.1264498829841614e-06
+iter 965: iscore=3.1758099794387817e-06
+iter 971: iscore=3.191642463207245e-06
+iter 978: iscore=3.1944364309310913e-06
+iter 979: iscore=3.1953677535057068e-06
+iter 1016: iscore=3.2298266887664795e-06
+iter 1032: iscore=3.236345946788788e-06
+iter 1091: iscore=3.2437965273857117e-06
+iter 1185: iscore=3.248453140258789e-06
+iter 1220: iscore=3.2652169466018677e-06
+iter 1245: iscore=3.2959505915641785e-06
+iter 1264: iscore=3.3332034945487976e-06
+iter 1340: iscore=3.3471733331680298e-06
+iter 1357: iscore=3.620050847530365e-06
+iter 1388: iscore=3.6209821701049805e-06
+iter 1441: iscore=3.6228448152542114e-06
+iter 1490: iscore=3.7262216210365295e-06
+iter 1525: iscore=3.7280842661857605e-06
+iter 1541: iscore=3.7336722016334534e-06
+iter 1561: iscore=3.7355348467826843e-06
+iter 1605: iscore=3.754161298274994e-06
+iter 1640: iscore=3.773719072341919e-06
+iter 1657: iscore=3.7783756852149963e-06
+iter 2012: iscore=3.827735781669617e-06
+iter 2171: iscore=3.873370587825775e-06
+iter 2234: iscore=3.8929283618927e-06
+iter 2258: iscore=3.902241587638855e-06
+iter 2290: iscore=3.916211426258087e-06
+iter 2295: iscore=3.9245933294296265e-06
+iter 2329: iscore=3.934837877750397e-06
+iter 2345: iscore=3.9441511034965515e-06
+iter 2351: iscore=4.150904715061188e-06
+iter 2393: iscore=4.155561327934265e-06
+iter 2407: iscore=4.307366907596588e-06
+iter 2419: iscore=4.3371692299842834e-06
+iter 2455: iscore=4.375353455543518e-06
+iter 2492: iscore=4.4014304876327515e-06
+iter 2495: iscore=4.408881068229675e-06
+iter 2529: iscore=4.409812390804291e-06
+iter 2560: iscore=4.416331648826599e-06
+iter 2564: iscore=4.4442713260650635e-06
+iter 2710: iscore=4.451721906661987e-06
+iter 2892: iscore=4.460103809833527e-06
+iter 3992: iscore=4.4619664549827576e-06
+iter 4252: iscore=4.469417035579681e-06
+iter 4748: iscore=4.471279680728912e-06
+iter 5125: iscore=4.475004971027374e-06
+iter 6410: iscore=4.494562745094299e-06
+iter 7109: iscore=4.500150680541992e-06
+cw0=1e-07 cw=-4.400151e-06
+succ=True

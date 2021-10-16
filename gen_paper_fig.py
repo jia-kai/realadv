@@ -10,6 +10,8 @@ from realadv.find_edge_input import select_robust_examples
 from realadv.find_edge_model import cw_loss_vec
 
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
 import cv2
 import numpy as np
@@ -19,6 +21,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from pathlib import Path
+import re
 import os
 import functools
 import inspect
@@ -55,6 +58,49 @@ class PercentValue:
             return r'{:.1g}\%'.format(val)
         return ret
 
+def fmt_scinum(x):
+    xs = f'{x:.1e}'
+    base, exp = xs.split('e')
+    return rf'{base}\times10^{{ {int(exp)} }}'
+
+class ReLUWithPattern(nn.Module):
+    _cb = None
+
+    def __init__(self, callback):
+        self._cb = callback
+        super().__init__()
+
+    def forward(self, x):
+        self._cb(torch_as_npy(x >= 0))
+        return F.relu(x)
+
+
+class ModelWithReLUPattern:
+    _record = None
+    _model = None
+
+    def __init__(self, model: nn.Sequential):
+        new_model = []
+        for i in model:
+            if isinstance(i, nn.ReLU):
+                new_model.append(ReLUWithPattern(self._on_relu))
+            else:
+                new_model.append(i)
+
+        self._model = nn.Sequential(*new_model)
+
+    def _on_relu(self, pattern):
+        self._record.extend(pattern.flatten())
+
+    def __call__(self, x):
+        self._record = []
+        try:
+            y = self._model(x)
+            rec = np.ascontiguousarray(self._record)
+            return y, rec
+        finally:
+            del self._record
+
 
 def cache_by_source(name):
     def wrap_caller(fn):
@@ -78,6 +124,10 @@ def cache_by_source(name):
     return wrap_caller
 
 
+def fix_cline(latex):
+    """use cmidrule for cline"""
+    return latex.replace('cline', 'cmidrule(lr)')
+
 class GenPaperFig:
     impl_configs = {
         'C,M': ('cpu', 'features_chk', True, 'cpumm'),
@@ -87,17 +137,20 @@ class GenPaperFig:
         'G,CWG': ('cuda', 'features', False, 'gpuconvwg'),
     }
     data_dir = Path(__file__).resolve().parent / 'output'
+    re_attack_init_loss = re.compile(
+        r'working on .*/([0-9]*).model with loss=(.*[0-9])'
+    )
 
     CIFAR10_CLASSES = [
-        'airplane', 										
-        'automobile', 										
-        'bird', 										
-        'cat', 										
-        'deer', 										
-        'dog', 										
-        'frog', 										
-        'horse', 										
-        'ship', 										
+        'airplane',
+        'automobile',
+        'bird',
+        'cat',
+        'deer',
+        'dog',
+        'frog',
+        'horse',
+        'ship',
         'truck',
     ]
 
@@ -115,9 +168,8 @@ class GenPaperFig:
             fig.tight_layout(pad=4.0)
             return fig, ax.flatten()
 
-        fig_local, axes_local = make_subplots(3, 2)
+        fig_local, axes_local = make_subplots(2, 3)
         axes_local[-1].axis('off')
-        axes_local = axes_local.flatten()
         fig_rela, axes_rela = make_subplots(2, 2)
 
         img = None
@@ -127,7 +179,6 @@ class GenPaperFig:
                      create_with_load(fpath).
                      to(device).
                      use_unstable_conv(not use_stable))
-            ftr = getattr(model, ftr)
             if img is None:
                 rela_img = [i for i, _ in model.make_testset_loader()]
                 rela_img = torch.cat(rela_img, dim=0)
@@ -136,8 +187,11 @@ class GenPaperFig:
                 img.requires_grad = True
             img = img.to(device)
 
+            ftr = getattr(model, ftr)
             f0 = ftr[:ftr.layer_take[0]]
-            out_ref = ftr(img)
+            ftr = ModelWithReLUPattern(ftr)
+            out_ref, out_ref_pattern = ftr(img)
+            print(f'out_ref: relu active: {out_ref_pattern.mean()*100:.2f}%')
             if not idx:
                 f0_out_ref = f0(rela_img)
             else:
@@ -154,9 +208,11 @@ class GenPaperFig:
             plot_y_rela = []
             timg = img.clone()
             with torch.no_grad():
+                val0 = img[n, c, h, w].item()
                 for dx in plot_x:
-                    timg[n, c, h, w] = img[n, c, h, w] + dx
-                    out = ftr(timg)
+                    timg[n, c, h, w] = val0 + dx
+                    out, out_pattern = ftr(timg)
+                    assert np.all(out_ref_pattern == out_pattern)
                     plot_y.append((out - out_ref).abs_().max().item())
 
             title = r'$\operatorname{NN_{%s}}$' % name
@@ -188,8 +244,10 @@ class GenPaperFig:
                 ax.ticklabel_format(axis='x', style='sci', scilimits=(0,0))
                 ax.grid()
 
-        fig_local.savefig(str(self.out_dir / f'local-error.pdf'))
-        fig_rela.savefig(str(self.out_dir / f'rela-error.pdf'))
+        fig_local.savefig(str(self.out_dir / f'local-error.pdf'),
+                          metadata={'CreationDate': None})
+        fig_rela.savefig(str(self.out_dir / f'rela-error.pdf'),
+                         metadata={'CreationDate': None})
 
     def gen_result_summary_table_nogap(self):
         idx_row = [
@@ -198,43 +256,75 @@ class GenPaperFig:
         nr_model = [0, 0]
         nr_selected = [0, 0]
         ext2col = {}
-        idx_col = [r'\#quasi-adv / \#tested']
+        ext_dset_case2loss = {}
+        idx_col = []
         for idx, (name, (dev, ftr, stable, latex)) in enumerate(
                 self.impl_configs.items()):
             idx_col.append(r'$\operatorname{NN_{%s}}$' % name)
-            ext2col[f'.adv_nogap1_stable{int(stable)}_'
-                    f'mm{int(ftr=="features_chk")}_'
-                    f'cpu{int(dev=="cpu")}'] = idx + 1
+            key = (f'nogap1_stable{int(stable)}_'
+                   f'mm{int(ftr=="features_chk")}_'
+                   f'cpu{int(dev=="cpu")}')
+            ext2col[f'.adv_{key}'] = idx
+            for dset in idx_row:
+                with (self.data_dir /
+                      f'{dset.lower()}.attack.log_{key}').open() as fin:
+                    for line in fin:
+                        m = self.re_attack_init_loss.match(line.strip())
+                        if m is not None:
+                            ext_dset_case2loss[
+                                (f'.adv_{key}', dset, m.group(1))
+                            ] = float(m.group(2))
 
         data = np.zeros((len(idx_row), len(idx_col)), dtype=np.int32)
+        succ_losses = []
         for row_i, dset in enumerate(idx_row):
             for i in (self.data_dir / dset.lower()).iterdir():
                 if i.name.isdigit():
                     nr_selected[row_i] += 1
                     continue
 
-                ext = os.path.splitext(i)[1]
+                casename, ext = os.path.splitext(i.name)
                 if ext == '.model':
                     nr_model[row_i] += 1
                     continue
 
                 col = ext2col.get(ext)
                 if col is not None:
+                    dkey = (ext, dset, casename.replace('.model', ''))
+                    dv = ext_dset_case2loss.pop(dkey)
+                    succ_losses.append((dkey, dv))
                     data[row_i, col] += 1
 
+
         data = np.frompyfunc(str, 1, 1)(data)
-        for i in range(len(idx_row)):
-            data[i, 0] = f'{nr_model[i]} / {nr_selected[i]}'
         df = pd.DataFrame(data, index=idx_row, columns=idx_col)
         with self._open_outfile('result-defs.tex') as fout:
+
+            max_succ = max(succ_losses, key=lambda x: x[1])
+            min_fail = min(ext_dset_case2loss.items(), key=lambda x: x[1])
+            nr_succ_below_mf = len([i for i in succ_losses
+                                    if i[1] <= min_fail[1]])
+            nr_succ_below_0 = len([i for i in succ_losses
+                                    if i[1] <= 0])
+            print('%', max_succ, file=fout)
+            print('%', min_fail, file=fout)
+
             self._write_latex_defs(fout, [
                 ('nrModelMnist', nr_model[0]),
                 ('nrModelCifar', nr_model[1]),
+                ('nrSuccTotal', len(succ_losses)),
+                ('maxSuccLoss', fmt_scinum(max_succ[1])),
+                ('minFailLoss', fmt_scinum(min_fail[1])),
+                ('maxLoss', '{:.1f}'.format(max(ext_dset_case2loss.values()))),
+                ('nrSuccBelowFail', nr_succ_below_mf),
+                ('nrSuccBelowZero', nr_succ_below_0),
             ])
+
         with self._open_outfile('table-result-nogap.tex') as fout:
             latex: str = df.to_latex(
                 escape=False,
-                column_format='|'.join('l' + 'r'*len(idx_col)))
+                column_format='l' + 'r'*len(idx_col))
+            latex = fix_cline(latex)
             fout.write(latex)
 
     def gen_result_summary_table_gap(self):
@@ -271,12 +361,18 @@ class GenPaperFig:
         with self._open_outfile('table-result-gap.tex') as fout:
             latex: str = df.to_latex(
                 escape=False,
-                column_format='|'.join('ll' + 'r'*len(idx_col)),
+                column_format='ll' + 'r'*len(idx_col),
                 multirow=True,
             )
+            latex = fix_cline(latex)
             fout.write(latex)
 
     def gen_adv_imshow(self):
+        self._gen_adv_imshow(True)
+        for i in range(3):
+            self._gen_adv_imshow(False, i)
+
+    def _gen_adv_imshow(self, show_loss: bool, row_index: int = None):
         col_titles = []
         ext2col = {}
         col2ext = []
@@ -289,8 +385,10 @@ class GenPaperFig:
             ext2col[ext] = idx
             col2ext.append(ext)
 
+        # dataset -> (col -> {test nums})
         col_test_nums = [[set() for _ in range(len(col_titles))]
                          for _ in range(2)]
+
         datasets = ['mnist', 'cifar10']
         for row_i, dset in enumerate(datasets):
             for i in (self.data_dir / dset).iterdir():
@@ -298,22 +396,46 @@ class GenPaperFig:
                     col_test_nums[row_i][col].add(
                         int(i.name[:i.name.index('.')]))
 
-        test_nums = [functools.reduce(lambda a, b: a & b, i, i[0])
+        test_nums = [sorted(functools.reduce(lambda a, b: a & b, i, i[0]))
                      for i in col_test_nums]
+
+        if row_index is not None:
+            j = row_index
+            for i in test_nums:
+                ilen = len(i)
+                if 0 <= j < ilen:
+                    i[:] = [i[j]]
+                else:
+                    i.clear()
+                j -= ilen
+            assert j < 0, f'bad row_index {row_index}'
+            del j
 
         fig_rows = sum(map(len, test_nums))
         fig_cols = len(col_titles) + 1
+        if show_loss:
+            hspace = 0.4
+        else:
+            hspace = 0.2
+        if row_index is None:
+            hspace_pad = 0
+        else:
+            hspace_pad = 0.4
         fig, axes = plt.subplots(
             fig_rows, fig_cols,
-            gridspec_kw={'wspace': 0.05, 'hspace': 0.4},
+            gridspec_kw={'wspace': 0.05, 'hspace': hspace},
             squeeze=True,
             figsize=(fig_cols*1.6 + (fig_cols-1)*0.05,
-                     fig_rows*1.6 + (fig_rows-1)*0.4))
+                     fig_rows*1.6 + (fig_rows-1)*hspace + hspace_pad))
+        if fig_rows == 1:
+            axes = np.array([axes])
         row_id = 0
 
         refimg = None
+        refcls = None
         def imshow(r, c, img, title, out_score):
             nonlocal refimg
+            nonlocal refcls
             if c == 0:
                 refimg = img
             else:
@@ -334,13 +456,21 @@ class GenPaperFig:
             ax.axis('off')
 
             cls = np.argmax(out_score)
-            cw = cw_loss_vec(out_score, cls)
-            title = f'{title}{class_names[cls]}\n'r'$L_{\operatorname{CW}}$='
-            if cw >= 0.01:
-                title += f'{cw:.2f}'
+            if c == 0:
+                refcls = cls
+            cw = cw_loss_vec(out_score, refcls)
+            title = f'{title}{class_names[cls]}'
+            if show_loss:
+                title += '\n'r'$L_{\operatorname{CW}}$='
+                if cw >= 0.01:
+                    title += f'{cw:.1f}'
+                else:
+                    title += f'{cw:.1e}'
+            if row_index is not None:
+                t = ax.set_title(title, fontsize=20)
+                t.set_y(1.05)
             else:
-                title += f'{cw:.2e}'
-            ax.set_title(title)
+                ax.set_title(title)
 
         for dset_id, nums in enumerate(test_nums):
             if dset_id == 0:
@@ -360,12 +490,25 @@ class GenPaperFig:
                         data = pickle.load(fin)
                     if col == 0:
                         imshow(row_id, 0, data['inp'],
-                               'verified robust', data['inp_out_score'])
+                               'verified', data['inp_out_score'])
                     imshow(row_id, col + 1, data['adv_inp'],
                            title, data[adv_score_key])
                 row_id += 1
 
-        fig.savefig(str(self.out_dir / 'adv-img.pdf'))
+        if show_loss:
+            fname = 'adv-img'
+        else:
+            fname = 'adv-img-noloss'
+        if row_index is not None:
+            fname += f'-{row_index}'
+
+
+        if row_index is not None:
+            fig.subplots_adjust(top=0.6)
+
+        for ext in ['png', 'pdf']:
+            fig.savefig(str(self.out_dir / f'{fname}.{ext}'),
+                        metadata={'CreationDate': None})
 
     def _open_outfile(self, name):
         return (self.out_dir / name).open('w')

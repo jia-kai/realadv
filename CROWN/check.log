@@ -1,0 +1,1120 @@
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 264 neurons never activated, 2837 neurons always activated
+layer 1 426 neurons never activated, 1002 neurons always activated
+layer 2 17 neurons never activated, 65 neurons always activated
+epsilon = 0.10000
+    2.28 < f_c - f_0 < 14.83
+    8.43 < f_c - f_1 < 19.14
+    1.12 < f_c - f_3 < 14.79
+    9.81 < f_c - f_4 < 24.66
+    9.75 < f_c - f_5 < 24.24
+    9.48 < f_c - f_6 < 23.79
+    4.86 < f_c - f_7 < 15.97
+    3.46 < f_c - f_8 < 14.88
+    6.40 < f_c - f_9 < 20.55
+layer 0 264 neurons never activated, 2828 neurons always activated
+layer 1 333 neurons never activated, 1016 neurons always activated
+layer 2 12 neurons never activated, 59 neurons always activated
+epsilon = 0.10000
+    -4.24 < f_c - f_0 < 15.18
+    0.38 < f_c - f_1 < 18.75
+    -5.81 < f_c - f_3 < 15.97
+    -0.88 < f_c - f_4 < 22.65
+    -0.69 < f_c - f_5 < 23.03
+    0.96 < f_c - f_6 < 21.52
+    -2.82 < f_c - f_7 < 15.55
+    -4.17 < f_c - f_8 < 14.59
+    -2.30 < f_c - f_9 < 19.91
+file=output/1212 label=2 gap0=1.1176471710205078 gap1=-5.81466817855835
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 287 neurons never activated, 2828 neurons always activated
+layer 1 426 neurons never activated, 1041 neurons always activated
+layer 2 12 neurons never activated, 75 neurons always activated
+epsilon = 0.10000
+    6.97 < f_c - f_0 < 21.81
+    8.18 < f_c - f_1 < 18.69
+    5.35 < f_c - f_2 < 17.85
+    4.88 < f_c - f_3 < 17.72
+    8.62 < f_c - f_5 < 23.05
+    9.27 < f_c - f_6 < 21.45
+    3.43 < f_c - f_7 < 15.36
+    5.25 < f_c - f_8 < 18.59
+    0.65 < f_c - f_9 < 12.44
+layer 0 287 neurons never activated, 2819 neurons always activated
+layer 1 342 neurons never activated, 1048 neurons always activated
+layer 2 8 neurons never activated, 65 neurons always activated
+epsilon = 0.10000
+    -0.48 < f_c - f_0 < 20.64
+    1.86 < f_c - f_1 < 17.97
+    -1.34 < f_c - f_2 < 18.37
+    -0.87 < f_c - f_3 < 18.37
+    0.19 < f_c - f_5 < 21.90
+    1.10 < f_c - f_6 < 20.14
+    -2.40 < f_c - f_7 < 15.57
+    -1.85 < f_c - f_8 < 17.60
+    -3.50 < f_c - f_9 < 13.47
+file=output/1459 label=4 gap0=0.648014485836029 gap1=-3.4996278285980225
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 304 neurons never activated, 2810 neurons always activated
+layer 1 391 neurons never activated, 1080 neurons always activated
+layer 2 9 neurons never activated, 75 neurons always activated
+epsilon = 0.10000
+    7.89 < f_c - f_0 < 17.18
+    10.31 < f_c - f_1 < 21.11
+    7.36 < f_c - f_2 < 18.40
+    9.31 < f_c - f_3 < 21.03
+    3.95 < f_c - f_4 < 13.10
+    8.03 < f_c - f_5 < 16.13
+    8.84 < f_c - f_7 < 20.98
+    6.14 < f_c - f_8 < 17.78
+    13.05 < f_c - f_9 < 23.81
+layer 0 304 neurons never activated, 2803 neurons always activated
+layer 1 306 neurons never activated, 1086 neurons always activated
+layer 2 9 neurons never activated, 66 neurons always activated
+epsilon = 0.10000
+    0.91 < f_c - f_0 < 13.84
+    -0.04 < f_c - f_1 < 17.60
+    -2.02 < f_c - f_2 < 14.75
+    0.21 < f_c - f_3 < 17.63
+    -3.34 < f_c - f_4 < 12.28
+    0.43 < f_c - f_5 < 12.87
+    -2.16 < f_c - f_7 < 16.83
+    -2.23 < f_c - f_8 < 13.91
+    2.18 < f_c - f_9 < 19.29
+file=output/1461 label=6 gap0=3.953639030456543 gap1=-3.342923641204834
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 299 neurons never activated, 2811 neurons always activated
+layer 1 402 neurons never activated, 1082 neurons always activated
+layer 2 9 neurons never activated, 76 neurons always activated
+epsilon = 0.10000
+    8.94 < f_c - f_0 < 16.82
+    6.93 < f_c - f_1 < 16.75
+    7.91 < f_c - f_2 < 18.08
+    8.26 < f_c - f_3 < 18.92
+    5.33 < f_c - f_4 < 13.94
+    3.68 < f_c - f_5 < 11.69
+    11.27 < f_c - f_7 < 22.20
+    4.61 < f_c - f_8 < 14.52
+    8.94 < f_c - f_9 < 19.58
+layer 0 299 neurons never activated, 2801 neurons always activated
+layer 1 318 neurons never activated, 1080 neurons always activated
+layer 2 8 neurons never activated, 68 neurons always activated
+epsilon = 0.10000
+    2.69 < f_c - f_0 < 15.14
+    -1.44 < f_c - f_1 < 16.63
+    -1.15 < f_c - f_2 < 16.64
+    0.18 < f_c - f_3 < 17.83
+    -1.66 < f_c - f_4 < 14.04
+    -2.17 < f_c - f_5 < 11.50
+    0.18 < f_c - f_7 < 20.22
+    -2.00 < f_c - f_8 < 13.61
+    0.49 < f_c - f_9 < 18.23
+file=output/2641 label=6 gap0=3.6821095943450928 gap1=-2.1723556518554688
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 283 neurons never activated, 2819 neurons always activated
+layer 1 424 neurons never activated, 1035 neurons always activated
+layer 2 17 neurons never activated, 72 neurons always activated
+epsilon = 0.10000
+    8.90 < f_c - f_0 < 19.61
+    10.40 < f_c - f_1 < 17.93
+    7.39 < f_c - f_2 < 17.73
+    9.20 < f_c - f_3 < 18.64
+    14.11 < f_c - f_5 < 24.59
+    9.96 < f_c - f_6 < 20.77
+    6.62 < f_c - f_7 < 14.35
+    9.15 < f_c - f_8 < 18.02
+    4.37 < f_c - f_9 < 12.27
+layer 0 283 neurons never activated, 2807 neurons always activated
+layer 1 281 neurons never activated, 1051 neurons always activated
+layer 2 8 neurons never activated, 64 neurons always activated
+epsilon = 0.10000
+    -2.42 < f_c - f_0 < 17.38
+    -3.30 < f_c - f_1 < 15.36
+    -4.76 < f_c - f_2 < 16.88
+    -1.20 < f_c - f_3 < 17.90
+    -1.65 < f_c - f_5 < 19.97
+    -3.34 < f_c - f_6 < 17.10
+    -4.01 < f_c - f_7 < 14.14
+    -1.33 < f_c - f_8 < 15.47
+    -1.18 < f_c - f_9 < 12.61
+file=output/2748 label=4 gap0=4.36704683303833 gap1=-4.761754035949707
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 299 neurons never activated, 2807 neurons always activated
+layer 1 363 neurons never activated, 1053 neurons always activated
+layer 2 9 neurons never activated, 70 neurons always activated
+epsilon = 0.10000
+    2.26 < f_c - f_0 < 14.15
+    4.59 < f_c - f_1 < 18.46
+    -0.71 < f_c - f_2 < 13.65
+    0.75 < f_c - f_3 < 12.71
+    1.68 < f_c - f_4 < 12.14
+    2.98 < f_c - f_5 < 13.31
+    2.09 < f_c - f_6 < 16.14
+    -0.82 < f_c - f_7 < 11.44
+    -1.72 < f_c - f_8 < 9.95
+layer 0 299 neurons never activated, 2802 neurons always activated
+layer 1 295 neurons never activated, 1068 neurons always activated
+layer 2 8 neurons never activated, 65 neurons always activated
+epsilon = 0.10000
+    -1.63 < f_c - f_0 < 14.31
+    -1.70 < f_c - f_1 < 17.67
+    -5.12 < f_c - f_2 < 14.08
+    -3.20 < f_c - f_3 < 13.15
+    -3.53 < f_c - f_4 < 12.99
+    -1.99 < f_c - f_5 < 13.49
+    -3.67 < f_c - f_6 < 17.04
+    -4.85 < f_c - f_7 < 11.85
+    -5.47 < f_c - f_8 < 10.95
+file=output/2782 label=9 gap0=-1.7215118408203125 gap1=-5.471144676208496
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 279 neurons never activated, 2818 neurons always activated
+layer 1 388 neurons never activated, 1025 neurons always activated
+layer 2 10 neurons never activated, 69 neurons always activated
+epsilon = 0.10000
+    6.21 < f_c - f_0 < 19.21
+    6.33 < f_c - f_1 < 20.65
+    2.40 < f_c - f_2 < 15.20
+    1.12 < f_c - f_3 < 12.30
+    6.87 < f_c - f_4 < 21.65
+    3.30 < f_c - f_5 < 15.72
+    5.80 < f_c - f_6 < 18.77
+    5.97 < f_c - f_7 < 20.67
+    4.15 < f_c - f_9 < 17.37
+layer 0 279 neurons never activated, 2813 neurons always activated
+layer 1 314 neurons never activated, 1041 neurons always activated
+layer 2 7 neurons never activated, 62 neurons always activated
+epsilon = 0.10000
+    0.53 < f_c - f_0 < 19.07
+    -1.28 < f_c - f_1 < 21.38
+    -3.46 < f_c - f_2 < 16.07
+    -3.60 < f_c - f_3 < 14.77
+    -1.13 < f_c - f_4 < 22.25
+    -3.04 < f_c - f_5 < 17.22
+    -0.24 < f_c - f_6 < 19.36
+    -1.71 < f_c - f_7 < 21.25
+    -2.75 < f_c - f_9 < 18.85
+file=output/3603 label=8 gap0=1.1242241859436035 gap1=-3.6040797233581543
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 274 neurons never activated, 2828 neurons always activated
+layer 1 445 neurons never activated, 1013 neurons always activated
+layer 2 16 neurons never activated, 69 neurons always activated
+epsilon = 0.10000
+    18.83 < f_c - f_0 < 31.82
+    14.47 < f_c - f_1 < 25.68
+    11.15 < f_c - f_2 < 21.42
+    16.54 < f_c - f_4 < 28.76
+    9.01 < f_c - f_5 < 17.79
+    20.54 < f_c - f_6 < 34.43
+    6.50 < f_c - f_7 < 16.91
+    9.05 < f_c - f_8 < 18.76
+    11.25 < f_c - f_9 < 22.17
+layer 0 274 neurons never activated, 2818 neurons always activated
+layer 1 308 neurons never activated, 1022 neurons always activated
+layer 2 8 neurons never activated, 62 neurons always activated
+epsilon = 0.10000
+    3.71 < f_c - f_0 < 24.28
+    -0.61 < f_c - f_1 < 22.16
+    -1.64 < f_c - f_2 < 18.01
+    -0.53 < f_c - f_4 < 23.76
+    -1.52 < f_c - f_5 < 15.45
+    2.36 < f_c - f_6 < 26.35
+    -2.99 < f_c - f_7 < 15.69
+    -1.26 < f_c - f_8 < 15.63
+    -0.97 < f_c - f_9 < 18.33
+file=output/3860 label=3 gap0=6.5017595291137695 gap1=-2.994741439819336
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 322 neurons never activated, 2796 neurons always activated
+layer 1 376 neurons never activated, 1108 neurons always activated
+layer 2 11 neurons never activated, 73 neurons always activated
+epsilon = 0.10000
+    10.97 < f_c - f_0 < 20.36
+    3.58 < f_c - f_1 < 13.48
+    8.04 < f_c - f_2 < 16.84
+    4.02 < f_c - f_3 < 11.68
+    0.86 < f_c - f_4 < 6.84
+    6.75 < f_c - f_5 < 14.28
+    10.95 < f_c - f_6 < 22.41
+    3.38 < f_c - f_7 < 11.25
+    3.10 < f_c - f_8 < 10.35
+layer 0 322 neurons never activated, 2788 neurons always activated
+layer 1 282 neurons never activated, 1120 neurons always activated
+layer 2 7 neurons never activated, 67 neurons always activated
+epsilon = 0.10000
+    1.16 < f_c - f_0 < 17.39
+    -4.47 < f_c - f_1 < 13.80
+    -2.19 < f_c - f_2 < 15.12
+    -3.99 < f_c - f_3 < 10.97
+    -4.62 < f_c - f_4 < 9.05
+    -3.16 < f_c - f_5 < 12.41
+    -1.21 < f_c - f_6 < 20.43
+    -4.70 < f_c - f_7 < 11.73
+    -3.74 < f_c - f_8 < 10.73
+file=output/3966 label=9 gap0=0.8593801259994507 gap1=-4.704716682434082
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 318 neurons never activated, 2793 neurons always activated
+layer 1 372 neurons never activated, 1102 neurons always activated
+layer 2 13 neurons never activated, 72 neurons always activated
+epsilon = 0.10000
+    10.34 < f_c - f_0 < 18.88
+    2.94 < f_c - f_1 < 12.07
+    4.20 < f_c - f_2 < 11.80
+    5.71 < f_c - f_4 < 17.96
+    2.72 < f_c - f_5 < 10.49
+    7.34 < f_c - f_6 < 18.92
+    5.16 < f_c - f_7 < 14.37
+    4.64 < f_c - f_8 < 13.36
+    4.38 < f_c - f_9 < 12.88
+layer 0 318 neurons never activated, 2783 neurons always activated
+layer 1 264 neurons never activated, 1125 neurons always activated
+layer 2 6 neurons never activated, 63 neurons always activated
+epsilon = 0.10000
+    0.36 < f_c - f_0 < 14.72
+    -5.77 < f_c - f_1 < 12.23
+    -3.07 < f_c - f_2 < 10.32
+    -3.90 < f_c - f_4 < 16.37
+    -4.65 < f_c - f_5 < 9.00
+    -3.47 < f_c - f_6 < 14.64
+    -4.37 < f_c - f_7 < 11.74
+    -2.55 < f_c - f_8 < 10.70
+    -3.06 < f_c - f_9 < 11.99
+file=output/41 label=3 gap0=2.7209177017211914 gap1=-5.769503593444824
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 282 neurons never activated, 2818 neurons always activated
+layer 1 403 neurons never activated, 1049 neurons always activated
+layer 2 13 neurons never activated, 66 neurons always activated
+epsilon = 0.10000
+    5.77 < f_c - f_0 < 15.61
+    9.07 < f_c - f_1 < 19.69
+    5.96 < f_c - f_2 < 17.14
+    5.17 < f_c - f_3 < 16.03
+    4.61 < f_c - f_4 < 14.02
+    4.97 < f_c - f_5 < 14.47
+    11.59 < f_c - f_7 < 23.78
+    7.10 < f_c - f_8 < 18.45
+    11.56 < f_c - f_9 < 22.55
+layer 0 282 neurons never activated, 2812 neurons always activated
+layer 1 300 neurons never activated, 1058 neurons always activated
+layer 2 8 neurons never activated, 60 neurons always activated
+epsilon = 0.10000
+    -0.82 < f_c - f_0 < 14.89
+    -1.43 < f_c - f_1 < 19.37
+    -2.81 < f_c - f_2 < 16.21
+    -2.80 < f_c - f_3 < 17.76
+    -3.91 < f_c - f_4 < 15.34
+    -3.52 < f_c - f_5 < 15.42
+    -1.04 < f_c - f_7 < 21.16
+    -2.33 < f_c - f_8 < 17.08
+    0.05 < f_c - f_9 < 21.81
+file=output/4664 label=6 gap0=4.605232238769531 gap1=-3.9090144634246826
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 280 neurons never activated, 2819 neurons always activated
+layer 1 416 neurons never activated, 1014 neurons always activated
+layer 2 16 neurons never activated, 72 neurons always activated
+epsilon = 0.10000
+    15.30 < f_c - f_0 < 27.19
+    12.55 < f_c - f_1 < 23.12
+    8.13 < f_c - f_2 < 18.52
+    14.36 < f_c - f_4 < 26.89
+    8.01 < f_c - f_5 < 16.55
+    19.35 < f_c - f_6 < 31.93
+    8.90 < f_c - f_7 < 18.60
+    5.60 < f_c - f_8 < 14.90
+    7.73 < f_c - f_9 < 15.99
+layer 0 280 neurons never activated, 2801 neurons always activated
+layer 1 255 neurons never activated, 1050 neurons always activated
+layer 2 7 neurons never activated, 60 neurons always activated
+epsilon = 0.10000
+    -1.92 < f_c - f_0 < 19.96
+    -7.31 < f_c - f_1 < 18.93
+    -5.48 < f_c - f_2 < 15.84
+    -4.97 < f_c - f_4 < 22.95
+    -6.14 < f_c - f_5 < 14.79
+    -2.45 < f_c - f_6 < 24.36
+    -6.38 < f_c - f_7 < 16.11
+    -5.28 < f_c - f_8 < 13.05
+    -3.89 < f_c - f_9 < 16.02
+file=output/4798 label=3 gap0=5.597194671630859 gap1=-7.305288791656494
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 260 neurons never activated, 2843 neurons always activated
+layer 1 459 neurons never activated, 989 neurons always activated
+layer 2 21 neurons never activated, 65 neurons always activated
+epsilon = 0.10000
+    5.88 < f_c - f_0 < 16.11
+    8.18 < f_c - f_1 < 17.88
+    5.94 < f_c - f_3 < 15.03
+    11.45 < f_c - f_4 < 24.93
+    10.15 < f_c - f_5 < 23.37
+    11.20 < f_c - f_6 < 23.34
+    6.39 < f_c - f_7 < 14.98
+    9.60 < f_c - f_8 < 19.57
+    9.52 < f_c - f_9 < 21.01
+layer 0 260 neurons never activated, 2824 neurons always activated
+layer 1 310 neurons never activated, 1008 neurons always activated
+layer 2 12 neurons never activated, 57 neurons always activated
+epsilon = 0.10000
+    -4.58 < f_c - f_0 < 15.75
+    -1.82 < f_c - f_1 < 17.77
+    -4.31 < f_c - f_3 < 15.46
+    -2.05 < f_c - f_4 < 23.55
+    -4.48 < f_c - f_5 < 21.40
+    -3.21 < f_c - f_6 < 20.19
+    -3.89 < f_c - f_7 < 15.05
+    -1.66 < f_c - f_8 < 16.21
+    -1.34 < f_c - f_9 < 21.21
+file=output/519 label=2 gap0=5.882212162017822 gap1=-4.578723907470703
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 291 neurons never activated, 2816 neurons always activated
+layer 1 415 neurons never activated, 1055 neurons always activated
+layer 2 17 neurons never activated, 72 neurons always activated
+epsilon = 0.10000
+    8.22 < f_c - f_0 < 17.17
+    11.85 < f_c - f_1 < 19.59
+    11.85 < f_c - f_2 < 20.61
+    10.42 < f_c - f_3 < 19.89
+    9.22 < f_c - f_4 < 18.21
+    9.53 < f_c - f_5 < 19.61
+    14.69 < f_c - f_6 < 25.42
+    11.48 < f_c - f_8 < 22.11
+    4.68 < f_c - f_9 < 12.30
+layer 0 291 neurons never activated, 2796 neurons always activated
+layer 1 243 neurons never activated, 1068 neurons always activated
+layer 2 7 neurons never activated, 64 neurons always activated
+epsilon = 0.10000
+    -4.49 < f_c - f_0 < 15.06
+    -4.39 < f_c - f_1 < 16.66
+    -1.59 < f_c - f_2 < 16.04
+    -4.14 < f_c - f_3 < 16.09
+    -5.91 < f_c - f_4 < 16.24
+    -6.55 < f_c - f_5 < 17.69
+    -3.64 < f_c - f_6 < 21.76
+    -3.06 < f_c - f_8 < 16.89
+    -5.22 < f_c - f_9 < 12.93
+file=output/5853 label=7 gap0=4.680539131164551 gap1=-6.549830436706543
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 265 neurons never activated, 2830 neurons always activated
+layer 1 423 neurons never activated, 996 neurons always activated
+layer 2 18 neurons never activated, 65 neurons always activated
+epsilon = 0.10000
+    11.79 < f_c - f_0 < 25.50
+    11.89 < f_c - f_1 < 26.92
+    10.02 < f_c - f_2 < 25.26
+    5.68 < f_c - f_3 < 15.54
+    13.45 < f_c - f_4 < 27.65
+    4.82 < f_c - f_6 < 17.65
+    15.81 < f_c - f_7 < 30.15
+    5.76 < f_c - f_8 < 17.10
+    7.00 < f_c - f_9 < 16.92
+layer 0 265 neurons never activated, 2818 neurons always activated
+layer 1 274 neurons never activated, 1022 neurons always activated
+layer 2 8 neurons never activated, 60 neurons always activated
+epsilon = 0.10000
+    -0.85 < f_c - f_0 < 21.40
+    -1.79 < f_c - f_1 < 23.45
+    -3.35 < f_c - f_2 < 22.91
+    -2.70 < f_c - f_3 < 15.66
+    -0.50 < f_c - f_4 < 25.39
+    -4.38 < f_c - f_6 < 17.61
+    -0.80 < f_c - f_7 < 25.40
+    -3.52 < f_c - f_8 < 16.11
+    -1.72 < f_c - f_9 < 17.29
+file=output/5925 label=5 gap0=4.8159308433532715 gap1=-4.375200271606445
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 305 neurons never activated, 2809 neurons always activated
+layer 1 387 neurons never activated, 1084 neurons always activated
+layer 2 14 neurons never activated, 73 neurons always activated
+epsilon = 0.10000
+    2.75 < f_c - f_0 < 12.62
+    2.87 < f_c - f_1 < 13.17
+    3.47 < f_c - f_2 < 12.14
+    3.55 < f_c - f_3 < 12.30
+    1.37 < f_c - f_4 < 11.03
+    -1.08 < f_c - f_5 < 9.15
+    0.78 < f_c - f_6 < 10.45
+    6.47 < f_c - f_7 < 15.58
+    4.03 < f_c - f_9 < 13.12
+layer 0 305 neurons never activated, 2801 neurons always activated
+layer 1 309 neurons never activated, 1088 neurons always activated
+layer 2 12 neurons never activated, 70 neurons always activated
+epsilon = 0.10000
+    -1.25 < f_c - f_0 < 12.25
+    -2.86 < f_c - f_1 < 12.89
+    -1.65 < f_c - f_2 < 10.97
+    -0.20 < f_c - f_3 < 11.90
+    -1.75 < f_c - f_4 < 11.00
+    -4.30 < f_c - f_5 < 10.62
+    -2.59 < f_c - f_6 < 10.53
+    1.14 < f_c - f_7 < 13.68
+    -0.10 < f_c - f_9 < 12.82
+file=output/6327 label=8 gap0=-1.0820960998535156 gap1=-4.296229839324951
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 276 neurons never activated, 2832 neurons always activated
+layer 1 433 neurons never activated, 1025 neurons always activated
+layer 2 16 neurons never activated, 64 neurons always activated
+epsilon = 0.10000
+    12.22 < f_c - f_0 < 26.21
+    8.42 < f_c - f_1 < 22.52
+    10.70 < f_c - f_2 < 25.94
+    1.66 < f_c - f_3 < 13.02
+    12.53 < f_c - f_4 < 27.40
+    7.37 < f_c - f_6 < 20.82
+    17.37 < f_c - f_7 < 32.12
+    5.62 < f_c - f_8 < 18.77
+    4.62 < f_c - f_9 < 15.67
+layer 0 276 neurons never activated, 2816 neurons always activated
+layer 1 288 neurons never activated, 1038 neurons always activated
+layer 2 9 neurons never activated, 60 neurons always activated
+epsilon = 0.10000
+    0.21 < f_c - f_0 < 21.05
+    -2.28 < f_c - f_1 < 21.11
+    -2.83 < f_c - f_2 < 22.30
+    -4.96 < f_c - f_3 < 12.75
+    -1.66 < f_c - f_4 < 24.83
+    -2.31 < f_c - f_6 < 18.07
+    0.56 < f_c - f_7 < 25.12
+    -4.88 < f_c - f_8 < 15.13
+    -3.55 < f_c - f_9 < 15.46
+file=output/6576 label=5 gap0=1.6596760749816895 gap1=-4.961142063140869
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 290 neurons never activated, 2811 neurons always activated
+layer 1 388 neurons never activated, 1047 neurons always activated
+layer 2 11 neurons never activated, 71 neurons always activated
+epsilon = 0.10000
+    5.37 < f_c - f_0 < 16.23
+    11.42 < f_c - f_1 < 24.95
+    5.30 < f_c - f_2 < 17.08
+    3.33 < f_c - f_3 < 14.05
+    5.28 < f_c - f_4 < 13.37
+    9.05 < f_c - f_5 < 19.28
+    8.66 < f_c - f_6 < 20.42
+    0.39 < f_c - f_7 < 10.77
+    2.97 < f_c - f_8 < 12.62
+layer 0 290 neurons never activated, 2804 neurons always activated
+layer 1 294 neurons never activated, 1059 neurons always activated
+layer 2 8 neurons never activated, 64 neurons always activated
+epsilon = 0.10000
+    -3.96 < f_c - f_0 < 14.12
+    -2.38 < f_c - f_1 < 21.46
+    -4.32 < f_c - f_2 < 15.63
+    -3.42 < f_c - f_3 < 13.67
+    -4.07 < f_c - f_4 < 13.26
+    -1.93 < f_c - f_5 < 16.22
+    -3.95 < f_c - f_6 < 18.90
+    -7.90 < f_c - f_7 < 11.48
+    -5.62 < f_c - f_8 < 11.91
+file=output/6791 label=9 gap0=0.39336466789245605 gap1=-7.9026079177856445
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 276 neurons never activated, 2839 neurons always activated
+layer 1 438 neurons never activated, 1031 neurons always activated
+layer 2 12 neurons never activated, 74 neurons always activated
+epsilon = 0.10000
+    4.97 < f_c - f_0 < 16.12
+    11.47 < f_c - f_1 < 22.79
+    3.10 < f_c - f_2 < 14.54
+    2.80 < f_c - f_3 < 12.39
+    9.33 < f_c - f_4 < 21.02
+    6.53 < f_c - f_5 < 16.16
+    7.71 < f_c - f_6 < 19.93
+    5.40 < f_c - f_7 < 17.69
+    4.06 < f_c - f_9 < 15.08
+layer 0 276 neurons never activated, 2823 neurons always activated
+layer 1 297 neurons never activated, 1023 neurons always activated
+layer 2 6 neurons never activated, 60 neurons always activated
+epsilon = 0.10000
+    -2.54 < f_c - f_0 < 17.95
+    -1.51 < f_c - f_1 < 24.46
+    -5.56 < f_c - f_2 < 17.50
+    -4.64 < f_c - f_3 < 16.64
+    -3.32 < f_c - f_4 < 22.96
+    -3.33 < f_c - f_5 < 19.46
+    -2.43 < f_c - f_6 < 21.01
+    -5.09 < f_c - f_7 < 20.61
+    -4.91 < f_c - f_9 < 18.31
+file=output/6922 label=8 gap0=2.8016223907470703 gap1=-5.557357311248779
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 270 neurons never activated, 2833 neurons always activated
+layer 1 436 neurons never activated, 1028 neurons always activated
+layer 2 11 neurons never activated, 78 neurons always activated
+epsilon = 0.10000
+    8.11 < f_c - f_0 < 24.47
+    7.27 < f_c - f_1 < 18.88
+    8.26 < f_c - f_2 < 22.04
+    8.91 < f_c - f_3 < 23.24
+    10.57 < f_c - f_5 < 27.03
+    7.56 < f_c - f_6 < 21.15
+    6.52 < f_c - f_7 < 18.80
+    3.99 < f_c - f_8 < 18.91
+    5.83 < f_c - f_9 < 18.88
+layer 0 270 neurons never activated, 2824 neurons always activated
+layer 1 345 neurons never activated, 1036 neurons always activated
+layer 2 8 neurons never activated, 69 neurons always activated
+epsilon = 0.10000
+    0.57 < f_c - f_0 < 20.68
+    1.33 < f_c - f_1 < 17.19
+    0.25 < f_c - f_2 < 19.13
+    0.89 < f_c - f_3 < 20.24
+    0.71 < f_c - f_5 < 22.47
+    -0.86 < f_c - f_6 < 18.83
+    -0.20 < f_c - f_7 < 16.78
+    -3.87 < f_c - f_8 < 15.34
+    -0.81 < f_c - f_9 < 15.50
+file=output/6929 label=4 gap0=3.9948253631591797 gap1=-3.873194932937622
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 336 neurons never activated, 2788 neurons always activated
+layer 1 363 neurons never activated, 1133 neurons always activated
+layer 2 9 neurons never activated, 80 neurons always activated
+epsilon = 0.10000
+    12.28 < f_c - f_0 < 19.74
+    6.78 < f_c - f_2 < 14.61
+    3.96 < f_c - f_3 < 13.05
+    4.20 < f_c - f_4 < 11.24
+    5.48 < f_c - f_5 < 13.91
+    6.29 < f_c - f_6 < 15.13
+    8.68 < f_c - f_7 < 16.29
+    2.70 < f_c - f_8 < 11.04
+    5.95 < f_c - f_9 < 14.16
+layer 0 336 neurons never activated, 2776 neurons always activated
+layer 1 262 neurons never activated, 1147 neurons always activated
+layer 2 6 neurons never activated, 65 neurons always activated
+epsilon = 0.10000
+    2.19 < f_c - f_0 < 15.72
+    -1.59 < f_c - f_2 < 10.47
+    -4.86 < f_c - f_3 < 10.84
+    -3.00 < f_c - f_4 < 12.29
+    -4.83 < f_c - f_5 < 11.17
+    -2.33 < f_c - f_6 < 14.39
+    -2.03 < f_c - f_7 < 11.58
+    -4.77 < f_c - f_8 < 12.38
+    -3.09 < f_c - f_9 < 12.18
+file=output/7186 label=1 gap0=2.6972460746765137 gap1=-4.858528137207031
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 314 neurons never activated, 2791 neurons always activated
+layer 1 361 neurons never activated, 1104 neurons always activated
+layer 2 16 neurons never activated, 69 neurons always activated
+epsilon = 0.10000
+    4.27 < f_c - f_0 < 13.23
+    8.14 < f_c - f_1 < 18.65
+    7.69 < f_c - f_2 < 17.61
+    3.19 < f_c - f_3 < 9.88
+    8.35 < f_c - f_4 < 18.82
+    2.42 < f_c - f_6 < 11.06
+    9.43 < f_c - f_7 < 18.23
+    4.26 < f_c - f_8 < 12.83
+    7.34 < f_c - f_9 < 14.98
+layer 0 314 neurons never activated, 2783 neurons always activated
+layer 1 279 neurons never activated, 1125 neurons always activated
+layer 2 8 neurons never activated, 63 neurons always activated
+epsilon = 0.10000
+    -2.92 < f_c - f_0 < 13.61
+    -3.58 < f_c - f_1 < 14.90
+    -2.64 < f_c - f_2 < 15.97
+    -1.59 < f_c - f_3 < 11.65
+    -2.01 < f_c - f_4 < 15.62
+    -2.92 < f_c - f_6 < 13.19
+    -1.85 < f_c - f_7 < 14.80
+    -3.41 < f_c - f_8 < 12.56
+    0.10 < f_c - f_9 < 13.90
+file=output/7534 label=5 gap0=2.4159178733825684 gap1=-3.584465503692627
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 268 neurons never activated, 2845 neurons always activated
+layer 1 466 neurons never activated, 963 neurons always activated
+layer 2 25 neurons never activated, 64 neurons always activated
+epsilon = 0.10000
+    9.00 < f_c - f_1 < 20.83
+    6.35 < f_c - f_2 < 15.64
+    12.27 < f_c - f_3 < 22.28
+    8.58 < f_c - f_4 < 20.87
+    11.09 < f_c - f_5 < 21.97
+    7.33 < f_c - f_6 < 16.58
+    9.93 < f_c - f_7 < 21.54
+    11.57 < f_c - f_8 < 20.55
+    9.09 < f_c - f_9 < 19.02
+layer 0 268 neurons never activated, 2829 neurons always activated
+layer 1 291 neurons never activated, 989 neurons always activated
+layer 2 11 neurons never activated, 61 neurons always activated
+epsilon = 0.10000
+    -3.81 < f_c - f_1 < 19.40
+    -2.86 < f_c - f_2 < 16.68
+    -0.60 < f_c - f_3 < 20.17
+    -4.35 < f_c - f_4 < 21.47
+    -2.89 < f_c - f_5 < 19.95
+    -2.70 < f_c - f_6 < 15.27
+    -2.85 < f_c - f_7 < 19.74
+    -0.38 < f_c - f_8 < 17.45
+    -1.05 < f_c - f_9 < 19.23
+file=output/7683 label=0 gap0=6.35035514831543 gap1=-4.34619665145874
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 291 neurons never activated, 2826 neurons always activated
+layer 1 429 neurons never activated, 1037 neurons always activated
+layer 2 12 neurons never activated, 72 neurons always activated
+epsilon = 0.10000
+    13.21 < f_c - f_0 < 25.53
+    16.21 < f_c - f_1 < 29.14
+    11.22 < f_c - f_2 < 23.21
+    3.91 < f_c - f_3 < 14.51
+    4.85 < f_c - f_4 < 14.82
+    5.58 < f_c - f_5 < 16.45
+    15.01 < f_c - f_6 < 27.80
+    5.20 < f_c - f_7 < 15.91
+    5.24 < f_c - f_8 < 14.14
+layer 0 291 neurons never activated, 2816 neurons always activated
+layer 1 302 neurons never activated, 1044 neurons always activated
+layer 2 8 neurons never activated, 64 neurons always activated
+epsilon = 0.10000
+    0.42 < f_c - f_0 < 19.60
+    0.87 < f_c - f_1 < 23.05
+    -0.72 < f_c - f_2 < 19.21
+    -4.40 < f_c - f_3 < 14.04
+    -4.24 < f_c - f_4 < 14.61
+    -4.42 < f_c - f_5 < 14.73
+    -0.86 < f_c - f_6 < 22.55
+    -4.43 < f_c - f_7 < 14.24
+    -3.94 < f_c - f_8 < 13.25
+file=output/7898 label=9 gap0=3.9065232276916504 gap1=-4.426576614379883
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 284 neurons never activated, 2830 neurons always activated
+layer 1 428 neurons never activated, 1033 neurons always activated
+layer 2 17 neurons never activated, 67 neurons always activated
+epsilon = 0.10000
+    7.54 < f_c - f_0 < 15.92
+    10.58 < f_c - f_1 < 21.61
+    8.52 < f_c - f_2 < 18.59
+    8.40 < f_c - f_3 < 18.94
+    4.72 < f_c - f_4 < 13.25
+    7.10 < f_c - f_5 < 15.95
+    13.15 < f_c - f_7 < 24.66
+    10.85 < f_c - f_8 < 20.93
+    14.87 < f_c - f_9 < 26.01
+layer 0 284 neurons never activated, 2820 neurons always activated
+layer 1 314 neurons never activated, 1042 neurons always activated
+layer 2 9 neurons never activated, 62 neurons always activated
+epsilon = 0.10000
+    -0.29 < f_c - f_0 < 14.59
+    -0.46 < f_c - f_1 < 19.46
+    -2.46 < f_c - f_2 < 16.66
+    -0.82 < f_c - f_3 < 18.40
+    -3.45 < f_c - f_4 < 14.02
+    -1.84 < f_c - f_5 < 15.59
+    -0.47 < f_c - f_7 < 20.43
+    -0.25 < f_c - f_8 < 17.80
+    1.74 < f_c - f_9 < 22.23
+file=output/7957 label=6 gap0=4.72182559967041 gap1=-3.4492406845092773
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 282 neurons never activated, 2820 neurons always activated
+layer 1 419 neurons never activated, 1036 neurons always activated
+layer 2 12 neurons never activated, 77 neurons always activated
+epsilon = 0.10000
+    12.49 < f_c - f_0 < 26.57
+    13.45 < f_c - f_1 < 24.82
+    9.46 < f_c - f_2 < 23.11
+    9.27 < f_c - f_3 < 22.66
+    12.46 < f_c - f_5 < 27.72
+    7.67 < f_c - f_6 < 21.71
+    6.84 < f_c - f_7 < 18.35
+    6.12 < f_c - f_8 < 19.08
+    6.09 < f_c - f_9 < 16.95
+layer 0 282 neurons never activated, 2812 neurons always activated
+layer 1 295 neurons never activated, 1058 neurons always activated
+layer 2 7 neurons never activated, 67 neurons always activated
+epsilon = 0.10000
+    -0.88 < f_c - f_0 < 22.15
+    -1.26 < f_c - f_1 < 20.96
+    -3.86 < f_c - f_2 < 20.61
+    -2.47 < f_c - f_3 < 20.55
+    -2.43 < f_c - f_5 < 21.79
+    -4.98 < f_c - f_6 < 19.39
+    -4.50 < f_c - f_7 < 16.42
+    -4.38 < f_c - f_8 < 16.75
+    -2.00 < f_c - f_9 < 15.10
+file=output/8307 label=4 gap0=6.091349124908447 gap1=-4.980212211608887
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 295 neurons never activated, 2820 neurons always activated
+layer 1 396 neurons never activated, 1046 neurons always activated
+layer 2 13 neurons never activated, 72 neurons always activated
+epsilon = 0.10000
+    10.32 < f_c - f_0 < 20.09
+    12.26 < f_c - f_1 < 22.92
+    8.55 < f_c - f_2 < 18.89
+    3.38 < f_c - f_3 < 13.71
+    2.45 < f_c - f_4 < 10.90
+    5.63 < f_c - f_5 < 15.20
+    12.03 < f_c - f_6 < 24.11
+    0.07 < f_c - f_7 < 9.61
+    7.11 < f_c - f_8 < 17.10
+layer 0 295 neurons never activated, 2807 neurons always activated
+layer 1 290 neurons never activated, 1056 neurons always activated
+layer 2 7 neurons never activated, 63 neurons always activated
+epsilon = 0.10000
+    -0.74 < f_c - f_0 < 17.04
+    -1.88 < f_c - f_1 < 19.35
+    -2.94 < f_c - f_2 < 17.08
+    -4.43 < f_c - f_3 < 13.72
+    -5.49 < f_c - f_4 < 10.84
+    -3.98 < f_c - f_5 < 14.01
+    -1.49 < f_c - f_6 < 20.14
+    -8.05 < f_c - f_7 < 11.39
+    -2.96 < f_c - f_8 < 14.73
+file=output/850 label=9 gap0=0.0709468349814415 gap1=-8.051493644714355
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 285 neurons never activated, 2825 neurons always activated
+layer 1 440 neurons never activated, 1011 neurons always activated
+layer 2 17 neurons never activated, 68 neurons always activated
+epsilon = 0.10000
+    16.89 < f_c - f_0 < 28.56
+    13.71 < f_c - f_1 < 23.82
+    14.05 < f_c - f_2 < 24.29
+    13.12 < f_c - f_4 < 26.45
+    3.60 < f_c - f_5 < 12.83
+    18.75 < f_c - f_6 < 32.32
+    12.61 < f_c - f_7 < 22.98
+    7.55 < f_c - f_8 < 18.04
+    9.98 < f_c - f_9 < 19.29
+layer 0 285 neurons never activated, 2811 neurons always activated
+layer 1 271 neurons never activated, 1042 neurons always activated
+layer 2 7 neurons never activated, 62 neurons always activated
+epsilon = 0.10000
+    -0.13 < f_c - f_0 < 20.75
+    -4.45 < f_c - f_1 < 20.94
+    -2.26 < f_c - f_2 < 18.90
+    -4.28 < f_c - f_4 < 23.32
+    -7.47 < f_c - f_5 < 12.84
+    -1.99 < f_c - f_6 < 24.31
+    -3.60 < f_c - f_7 < 19.23
+    -4.37 < f_c - f_8 < 14.61
+    -2.74 < f_c - f_9 < 17.59
+file=output/8571 label=3 gap0=3.5952062606811523 gap1=-7.471236228942871
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 306 neurons never activated, 2805 neurons always activated
+layer 1 388 neurons never activated, 1072 neurons always activated
+layer 2 14 neurons never activated, 75 neurons always activated
+epsilon = 0.10000
+    7.17 < f_c - f_0 < 16.94
+    8.76 < f_c - f_1 < 18.20
+    0.85 < f_c - f_2 < 7.92
+    0.32 < f_c - f_3 < 8.52
+    8.18 < f_c - f_4 < 18.19
+    12.07 < f_c - f_5 < 22.40
+    11.31 < f_c - f_6 < 22.47
+    4.15 < f_c - f_8 < 13.25
+    3.44 < f_c - f_9 < 11.50
+layer 0 306 neurons never activated, 2799 neurons always activated
+layer 1 323 neurons never activated, 1082 neurons always activated
+layer 2 10 neurons never activated, 70 neurons always activated
+epsilon = 0.10000
+    1.80 < f_c - f_0 < 14.09
+    2.03 < f_c - f_1 < 15.32
+    -2.54 < f_c - f_2 < 7.72
+    -2.72 < f_c - f_3 < 8.62
+    0.56 < f_c - f_4 < 15.64
+    3.66 < f_c - f_5 < 18.64
+    2.92 < f_c - f_6 < 19.13
+    -1.54 < f_c - f_8 < 10.92
+    -1.52 < f_c - f_9 < 10.45
+file=output/890 label=7 gap0=0.32055553793907166 gap1=-2.7170212268829346
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 275 neurons never activated, 2826 neurons always activated
+layer 1 419 neurons never activated, 1000 neurons always activated
+layer 2 17 neurons never activated, 65 neurons always activated
+epsilon = 0.10000
+    4.54 < f_c - f_1 < 16.10
+    3.15 < f_c - f_2 < 12.52
+    5.22 < f_c - f_3 < 17.67
+    3.63 < f_c - f_4 < 18.89
+    5.49 < f_c - f_5 < 17.72
+    6.85 < f_c - f_6 < 17.76
+    -0.53 < f_c - f_7 < 12.46
+    2.83 < f_c - f_8 < 12.11
+    4.05 < f_c - f_9 < 16.50
+layer 0 275 neurons never activated, 2811 neurons always activated
+layer 1 298 neurons never activated, 1019 neurons always activated
+layer 2 11 neurons never activated, 64 neurons always activated
+epsilon = 0.10000
+    -3.72 < f_c - f_1 < 15.96
+    -2.84 < f_c - f_2 < 13.21
+    -3.46 < f_c - f_3 < 17.53
+    -6.46 < f_c - f_4 < 17.44
+    -4.07 < f_c - f_5 < 16.97
+    -0.92 < f_c - f_6 < 16.07
+    -7.20 < f_c - f_7 < 13.70
+    -3.68 < f_c - f_8 < 12.40
+    -4.53 < f_c - f_9 < 16.27
+file=output/9137 label=0 gap0=-0.5332838892936707 gap1=-7.203207015991211
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 282 neurons never activated, 2822 neurons always activated
+layer 1 428 neurons never activated, 1035 neurons always activated
+layer 2 19 neurons never activated, 69 neurons always activated
+epsilon = 0.10000
+    11.12 < f_c - f_0 < 21.59
+    5.97 < f_c - f_1 < 15.34
+    7.72 < f_c - f_2 < 18.12
+    11.54 < f_c - f_4 < 22.12
+    2.03 < f_c - f_5 < 10.29
+    14.90 < f_c - f_6 < 27.66
+    11.14 < f_c - f_7 < 21.95
+    6.16 < f_c - f_8 < 15.47
+    6.37 < f_c - f_9 < 14.43
+layer 0 282 neurons never activated, 2809 neurons always activated
+layer 1 270 neurons never activated, 1054 neurons always activated
+layer 2 10 neurons never activated, 59 neurons always activated
+epsilon = 0.10000
+    -0.76 < f_c - f_0 < 17.50
+    -3.39 < f_c - f_1 < 16.55
+    -2.94 < f_c - f_2 < 15.63
+    -2.64 < f_c - f_4 < 22.12
+    -5.42 < f_c - f_5 < 11.72
+    -1.36 < f_c - f_6 < 22.71
+    -2.73 < f_c - f_7 < 18.10
+    -3.93 < f_c - f_8 < 13.37
+    -2.54 < f_c - f_9 < 14.38
+file=output/9285 label=3 gap0=2.0298728942871094 gap1=-5.424871444702148
+Hidden layer 0 weight shape: (784, 3136)
+Hidden layer 0 bias shape: (3136,)
+Hidden layer 1 weight shape: (3136, 1568)
+Hidden layer 1 bias shape: (1568,)
+Hidden layer 2 weight shape: (1568, 100)
+Hidden layer 2 bias shape: (100,)
+Last layer weight shape: (100, 10)
+Last layer bias shape: (10,)
+layer 0 301 neurons never activated, 2809 neurons always activated
+layer 1 379 neurons never activated, 1067 neurons always activated
+layer 2 10 neurons never activated, 78 neurons always activated
+epsilon = 0.10000
+    7.20 < f_c - f_0 < 19.84
+    8.78 < f_c - f_1 < 20.04
+    7.35 < f_c - f_2 < 20.02
+    8.47 < f_c - f_3 < 20.59
+    10.92 < f_c - f_5 < 24.62
+    5.18 < f_c - f_6 < 18.03
+    5.90 < f_c - f_7 < 17.20
+    5.69 < f_c - f_8 < 18.60
+    3.77 < f_c - f_9 < 13.08
+layer 0 301 neurons never activated, 2798 neurons always activated
+layer 1 295 neurons never activated, 1082 neurons always activated
+layer 2 7 neurons never activated, 68 neurons always activated
+epsilon = 0.10000
+    0.01 < f_c - f_0 < 17.25
+    -0.10 < f_c - f_1 < 17.34
+    -1.81 < f_c - f_2 < 17.73
+    0.51 < f_c - f_3 < 18.36
+    -0.36 < f_c - f_5 < 20.06
+    -2.72 < f_c - f_6 < 16.07
+    -1.70 < f_c - f_7 < 15.28
+    -1.94 < f_c - f_8 < 16.11
+    -1.29 < f_c - f_9 < 12.16
+file=output/9346 label=4 gap0=3.7685649394989014 gap1=-2.7208869457244873

@@ -30,12 +30,15 @@ adversarial images.
 ## Citation
 
 ```txt
-@misc{jia2020exploiting,
-    title={Exploiting Verified Neural Networks via Floating Point Numerical Error},
-    author={Kai Jia and Martin Rinard},
-    year={2020},
-    eprint={2003.03021},
-    archivePrefix={arXiv},
-    primaryClass={cs.LG}
+@inproceedings{jia2021exploiting,
+    author="Jia, Kai and Rinard, Martin",
+    editor="Dr{\u{a}}goi, Cezara and Mukherjee, Suvam and Namjoshi, Kedar",
+    title="Exploiting Verified Neural Networks via Floating Point Numerical Error",
+    booktitle="Static Analysis",
+    year="2021",
+    publisher="Springer International Publishing",
+    address="Cham",
+    pages="191--205",
+    isbn="978-3-030-88806-0"
 }
 ```

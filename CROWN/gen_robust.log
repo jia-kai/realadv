@@ -1,0 +1,116 @@
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 1 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 1 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    -0.00 < f_c - f_j < 0.00
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 1 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    0.00 < f_c - f_j < 0.00
+bound init: (1e-07, [1e-07], 0.0)
+layer 0 0 neurons never activated, 81 neurons always activated
+layer 1 0 neurons never activated, 16 neurons always activated
+layer 2 0 neurons never activated, 16 neurons always activated
+layer 3 0 neurons never activated, 0 neurons always activated
+epsilon = 0.00100
+    0.00 < f_c - f_j < 0.00
+-0.00984559953212738 -1.342773437509881e-07 (5.70482e-09, [1e-07], 0.0)
